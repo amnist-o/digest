@@ -59,7 +59,7 @@ TH: 2,066 MW
 
 ## hook.body
 EN: In 2025 the BOI approved at least 38 data center projects worth at least THB 458 billion. Seven more, worth THB 96.88 billion, followed in January 2026, including True IDC (223 MW) and GSA (120 MW). Google tied a THB 30 billion investment to a Thai cloud region.
-TH: ปี 2568 BOI อนุมัติโครงการดาต้าเซ็นเตอร์อย่างน้อย 38 โครงการ มูลค่ารวมอย่างน้อย 458,000 ล้านบาท และอนุมัติเพิ่มอีก 7 โครงการ มูลค่า 96,880 ล้านบาท ในเดือนมกราคม 2569 รวมถึง True IDC (223 MW) และ GSA (120 MW) ขณะที่ Google ลงทุน 30,000 ล้านบาทกับภูมิภาคคลาวด์ในไทย
+TH: ปี 2568 BOI อนุมัติโครงการดาต้าเซ็นเตอร์อย่างน้อย 38 โครงการ มูลค่ารวมอย่างน้อย 458,000 ล้านบาท และอนุมัติเพิ่มอีก 7 โครงการ มูลค่า 96,880 ล้านบาท ในเดือนมกราคม 2569 รวมถึง True IDC (223 MW) และ GSA (120 MW) ขณะที่ Google ลงทุน 30,000 ล้านบาทกับ cloud region ในไทย
 
 ## hook.caveat
 > Small grey note under the chart.
@@ -78,7 +78,7 @@ TH: ดาต้าเซ็นเตอร์จำเป็นต้องม�
 
 ## need.body
 EN: Cloud and content companies carried almost three-quarters of the world's international bandwidth demand by 2024. Data centers want large international capacity, a second path in case one is cut, and short links to where the cables land.
-TH: ภายในปี 2567 บริษัทคลาวด์และคอนเทนต์ใช้แบนด์วิดท์ระหว่างประเทศเกือบสามในสี่ของความต้องการทั่วโลก ดาต้าเซ็นเตอร์ต้องการความจุในการส่งผ่านข้อมูลระหว่างประเทศสูง มีเส้นทางสำรองเผื่อเส้นหลักขาด และอยู่ใกล้จุดที่เคเบิลขึ้นฝั่ง
+TH: ภายในปี 2567 บริษัทคลาวด์และคอนเทนต์ใช้แบนด์วิดท์ระหว่างประเทศราวสามในสี่ของความต้องการทั่วโลก ดาต้าเซ็นเตอร์ต้องการความจุในการส่งผ่านข้อมูลระหว่างประเทศสูง มีเส้นทางสำรองเผื่อเส้นหลักขาด และอยู่ใกล้จุดที่เคเบิลขึ้นฝั่ง
 
 ## need.body2
 EN: The biggest players increasingly bring their own cables. Google, for example, is building its own route to Thailand.
@@ -113,20 +113,20 @@ TH: ตั้งแต่กลางปี 2568 มีเคเบิลระ�
 
 ## cables.list.sjc2
 > One line per cable, shown beside the map. Max ~60 characters.
-EN: SJC2 — live since July 2025, lands at Songkhla (True is a co-owner)
-TH: SJC2 — เปิดใช้ ก.ค. 2568 ขึ้นฝั่งสงขลา (True ร่วมเป็นเจ้าของ)
+EN: SJC2 — live since July 2025, lands at Songkhla (True is a co-owner in a consortium)
+TH: SJC2 — เปิดใช้ ก.ค. 2568 ขึ้นฝั่งสงขลา (True ร่วมเป็นเจ้าของใน consortium)
 
 ## cables.list.seah2x
-EN: SEA-H2X — live since July 2026, lands at Songkhla
-TH: SEA-H2X — เปิดใช้ ก.ค. 2569 ขึ้นฝั่งสงขลา
+EN: SEA-H2X — live since July 2026, lands at Songkhla via NT
+TH: SEA-H2X — เปิดใช้ ก.ค. 2569 ขึ้นฝั่งสงขลา กับ NT
 
 ## cables.list.talaylink
-EN: TalayLink (Google) — NBTC approved the landing in April 2026; no service date announced yet
-TH: TalayLink (Google) — กสทช. อนุมัติจุดขึ้นฝั่ง เม.ย. 2569 ยังไม่ประกาศวันเปิดใช้
+EN: TalayLink (Google) — NBTC approved the landing to IGC in April 2026; no service date announced yet
+TH: TalayLink (Google) — กสทช. อนุมัติจุดขึ้นฝั่งแก่ IGC ในเดือน เม.ย. 2569 ยังไม่ประกาศวันเปิดใช้
 
 ## cables.list.mct
-EN: MCT — lands at Rayong; one of three cables reaching the EEC (with AAG and ADC at Sriracha); being upgraded
-TH: MCT — ขึ้นฝั่งระยอง หนึ่งในสามเส้นที่ถึง EEC (ร่วมกับ AAG และ ADC ที่ศรีราชา) กำลังอัปเกรด
+EN: MCT — lands at Rayong; one of three cables reaching the EEC (with AAG and ADC at Sriracha); being upgraded the throughput
+TH: MCT — ขึ้นฝั่งระยอง หนึ่งในสามเส้นที่ถึง EEC (ร่วมกับ AAG และ ADC ที่ศรีราชา) กำลังพัฒนา throughput ของสาย
 
 ## map.label.landing
 > Map legend. Max ~20 characters.
@@ -157,12 +157,12 @@ TH: TalayLink (ไปออสเตรเลีย)
 > A small drawing splits one cable into its sea part and its land part.
 
 ## domestic.headline
-EN: The cable can be foreign-owned. The route inside Thailand is under NBTC.
-TH: เคเบิลใต้ทะเลเป็นของต่างชาติได้ แต่เส้นทางในประเทศไทยอยู่ภายใต้การกำกับของ กสทช.
+EN: The cable outside of territorial sea can be foreign-owned. The route inside Thailand is under NBTC.
+TH: เคเบิลใต้ทะเลนอกน่านน้ำไทยเป็นของต่างชาติได้ แต่เส้นทางในประเทศไทยอยู่ภายใต้การกำกับของ กสทช.
 
 ## domestic.body
-EN: Operators that run their own networks in Thailand need a licence that caps foreign shareholding below 50%. So a hyperscaler can own a cable that reaches Thailand, but the network inside Thailand must be run by a majority-Thai licensee. For TalayLink, IGC handles the landing, and AIS hosts Google's connectivity hub in the south.
-TH: ผู้ประกอบการที่มีโครงข่ายของตนเองในไทยต้องถือใบอนุญาตที่จำกัดสัดส่วนผู้ถือหุ้นต่างชาติให้น้อยกว่าร้อย~ละ 50 ผู้ให้บริการคลาวด์รายใหญ่จึงเป็นเจ้าของเคเบิลที่มาถึงไทยได้ แต่โครงข่ายภายในประเทศไทยต้องดำเนินการโดยผู้รับใบอนุญาตไทย สำหรับ TalayLink นั้น IGC เป็นผู้ดูแลการขึ้นฝั่ง และ AIS เป็นผู้ดูแลศูนย์เชื่อมต่อของ Google ในภาคใต้
+EN: Operators that run their own networks in Thailand need a licence that caps foreign shareholding to not exceed 49%. So a hyperscaler can own a cable that reaches Thailand, but the network inside Thailand must be run by a majority-Thai licensee. For TalayLink, IGC handles the landing, and AIS hosts Google's connectivity hub in the south.
+TH: ผู้ประกอบการที่มีโครงข่ายของตนเองในไทยต้องถือใบอนุญาตที่จำกัดสัดส่วนผู้ถือหุ้นต่างชาติให้ไม่เกินร้อย~ละ 49 ผู้ให้บริการคลาวด์รายใหญ่จึงเป็นเจ้าของเคเบิลที่มาถึงไทยได้ แต่โครงข่ายภายในประเทศไทยต้องดำเนินการโดยผู้รับใบอนุญาตไทย สำหรับ TalayLink นั้น IGC เป็นผู้ดูแลการขึ้นฝั่ง และ AIS เป็นผู้ดูแลศูนย์เชื่อมต่อของ Google ในภาคใต้
 
 ## domestic.split.sea
 > Label on the sea part of the cable drawing. Max ~25 characters.
@@ -231,8 +231,8 @@ TH: Open DC (มาเลเซีย)
 > Three cards with one number each. The map steps aside here.
 
 ## elsewhere.headline
-EN: Elsewhere, cables followed the data centers
-TH: ตัวอย่างจากต่างประเทศ การลงทุนเคเบิลตามดาต้าเซ็นเตอร์มา
+EN: Elsewhere, cables grows with the data centers
+TH: ตัวอย่างจากต่างประเทศ การลงทุนเคเบิลโตควบคู่กับดาต้าเซ็นเตอร์
 
 ## elsewhere.marseille.title
 EN: Marseille, France

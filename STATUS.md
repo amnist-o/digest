@@ -1,5 +1,16 @@
 # STATUS — NBTC digest web page
 
+## 28 October 2026 (section 7 hidden, QR code made)
+
+- A. edited `script.md` and asked to hide section 7 (takeaway, "what to watch", next-episode line).
+- **How:** added the word `hidden` to that section in `ep01-data-centers/index.html`. **Why this way:** the text stays in `script.md`, so bringing it back means deleting one word (a note in the page file says where).
+- Made a QR code for the live episode link (installed the small Python tool `segno` with A.'s okay). Saved in `qr/` as PNG and SVG. **Kept off GitHub** on purpose: it doesn't need to be online. The code points to the web address, so it never needs remaking.
+- The QR code couldn't be test-scanned on the laptop; A. to check with a phone.
+
+**State now:** section 7 hidden on the live site; QR code ready locally.
+**Next action:** share the QR code / link.
+**Waiting on / open questions:** whether section 7 comes back later; episode 2 topic.
+
 ## 16 October 2026 (STATUS.md now in the repository)
 
 - A. wants to read the progress log from other computers, so STATUS.md is now committed to the public `amnist-o/digest` repository.
