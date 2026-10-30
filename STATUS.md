@@ -1,5 +1,17 @@
 # STATUS — NBTC digest web page
 
+## 30 October 2026 (cable labels reworded, author byline added)
+
+- A. reworded the two labels on the cable drawing to make the legal line clearer: foreign ownership is allowed **outside Thai waters**, but the part **inside Thailand** must be run by a majority-Thai licensee (previously just "sea" vs "land").
+- **English labels shortened** to about 35 characters ("Beyond Thai waters: foreign-owned OK" / "In Thailand: majority-Thai licensee"). **Why:** A.'s first versions were 40–50 characters; the note asks for ~25, and A. decided 35 is fine.
+- **Added an author byline** on the cover, under the date: new block `cover.author` in `script.md`, plus one line in `index.html` so the page shows it. Name: อำนิษฐ์ โอภาพันธ์ - สำนักวิเคราะห์นโยบายเชิงปริมาณ / Amnist Opapun - Policy Assessment Bureau.
+- **Proof it's live:** checked on github.io; the cover shows the Thai byline and the live `script.md` has both languages.
+- Talked through how to describe the work to others: a bilingual "scrolling story" web page (เว็บเพจเล่าเรื่องแบบเลื่อนอ่าน), not editable by readers, and not suited to printing because the maps change as you scroll. A print/PDF version could be made later if needed.
+
+**State now:** episode 1 live with new labels and byline; section 7 still hidden; QR code still local only.
+**Next action:** share the link / QR code.
+**Waiting on / open questions:** whether a printable PDF version is needed; whether section 7 comes back; episode 2 topic.
+
 ## 28 October 2026 (section 7 hidden, QR code made)
 
 - A. edited `script.md` and asked to hide section 7 (takeaway, "what to watch", next-episode line).
