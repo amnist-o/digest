@@ -166,13 +166,13 @@ TH: ผู้ประกอบการที่มีโครงข่าย�
 
 ## domestic.split.sea
 > Label on the sea part of the cable drawing. Max ~25 characters.
-EN: Sea: foreign ownership allowed
-TH: ช่วงทะเล: ต่างชาติเป็นเจ้าของได้
+EN: Beyond Thai waters: foreign-owned OK
+TH: ช่วงนอกน่านน้ำไทย: ต่างชาติเป็นเจ้าของได้
 
 ## domestic.split.land
 > Label on the land part of the cable drawing. Max ~25 characters.
-EN: Land: majority-Thai licensee
-TH: ช่วงบนบก: ผู้รับใบอนุญาตไทย
+EN: In Thailand: majority-Thai licensee
+TH: ในเขตไทย: ผู้รับใบอนุญาตไทย
 
 ## domestic.gap
 EN: Most new capacity lands in the far south, while data centers cluster around Bangkok and the EEC. The link between them is the opportunity.
