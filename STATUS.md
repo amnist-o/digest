@@ -9,9 +9,11 @@
 - **Found why A. saw no movement at all in Brave:** Windows "Animation effects" is off on this laptop (Settings → Accessibility → Visual effects). Browsers pass that on as "reader wants less motion", and the page skipped every map move for such readers. This also explains the original "snappy" report.
 - **Decision (A.):** readers with less motion get a **short fade** instead of a jump: the map fades out (~0.2 s), switches view while hidden, fades back in (~0.4 s). Everyone else gets the flight. **Why:** respects readers who turn motion off on purpose (it can make people feel unwell), without the hard snap. New `fadeTo()` / `mapFade()` in `index.html`.
 
-**State now:** flight + fade working locally, not live.
-**Next action:** A. checks both in a browser (fade with Animation effects off, flight with it on), then commit, push to github.io and check the live page.
-**Waiting on / open questions:** whether the speed feels right (easy to tune: the 0.8–2.2 s flight limits, the 0.2/0.4 s fade).
+- A. checked it in Brave and approved. Committed (`d23700e`) and pushed. **Proof it's live:** GitHub Pages reports build of `d23700e` done; the live page contains the new `flight()` and `fadeTo()`, computes the 1.5 s section 2→3 flight, and shows no errors.
+
+**State now:** smooth flights + reduced-motion fade live on github.io.
+**Next action:** share the link / QR code.
+**Waiting on / open questions:** whether the speed feels right on other devices (easy to tune: the 0.8–2.2 s flight limits, the 0.2/0.4 s fade); printable PDF; section 7; episode 2 topic.
 
 ## 30 October 2026 (cable labels reworded, author byline added)
 
