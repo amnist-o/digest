@@ -31,6 +31,11 @@ TH: เคเบิลระหว่างประเทศจากการ�
 EN: October 2026
 TH: ตุลาคม 2569
 
+## cover.author
+> Author byline, shown under the date. Replace the placeholder with the real name.
+EN: By Amnist Opapun - Policy Assessment Bureau
+TH: โดย อำนิษฐ์ โอภาพันธ์ - สำนักวิเคราะห์นโยบายเชิงปริมาณ
+
 ---
 
 # 1. Hook: the data center boom
