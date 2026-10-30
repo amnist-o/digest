@@ -618,6 +618,7 @@ function followCoverScroll() {
   }
   coverDone = false;
   glide++;   // cancel any glide in progress
+  mapFade(1);
   const e = d3.easeCubicInOut(t);
   mapView = d3.interpolate(VIEW_NORTH, VIEW_TH)(e);
   placeCamera();
@@ -629,23 +630,57 @@ addEventListener('scroll', () => {
   requestAnimationFrame(() => { scrollQueued = false; followCoverScroll(); });
 }, { passive: true });
 
-// Move to a story step: fade layers, and glide the map if the view changes
+// A camera flight between two views: zoom out, pan, zoom back in, at an even pace.
+// Views are boxes in degrees; the flight follows the centre and the overall size, and blends the shape.
+function flight(from, to) {
+  const box = v => { const w = v[1][0] - v[0][0], h = v[1][1] - v[0][1];
+    return { c: [(v[0][0] + v[1][0]) / 2, (v[0][1] + v[1][1]) / 2], size: Math.sqrt(w * h), shape: Math.log(h / w) }; };
+  const a = box(from), b = box(to);
+  const path = d3.interpolateZoom([...a.c, a.size], [...b.c, b.size]);
+  return {
+    // Long trips take longer, but stay between 0.8 and 2.2 seconds
+    ms: Math.max(800, Math.min(2200, path.duration * 0.9)),
+    at: t => {
+      const [cx, cy, size] = path(t), r = Math.exp(a.shape + (b.shape - a.shape) * t);
+      const w = size / Math.sqrt(r), h = size * Math.sqrt(r);
+      return [[cx - w / 2, cy - h / 2], [cx + w / 2, cy + h / 2]];
+    },
+  };
+}
+
+// Move to a story step: fade layers, and fly the map if the view changes
 function setMapStep(step) {
   if (!STEPS[step] || step === mapStep) return;
   mapStep = step;
   // Opening screen and section 1: the scroll position steers the camera instead
   if ((step === 'cover' || step === 'hook') && scrollY < coverHeight()) return applyLayers(true);
   const from = mapView, to = STEPS[step].view;
-  if (from === to) { glide++; return applyLayers(true); }
+  if (from === to) { glide++; mapFade(1); return applyLayers(true); }
+  const run = ++glide, t0 = performance.now();   // a newer step change cancels this glide
+  if (REDUCE_MOTION) return fadeTo(to, run, t0);
   applyLayers(true);
-  const mix = d3.interpolate(from, to), ease = d3.easeCubicInOut, t0 = performance.now();
-  const run = ++glide;   // a newer step change cancels this glide
+  const fly = flight(from, to), ease = d3.easeCubicInOut;
   (function frame(now) {
     if (run !== glide) return;
-    const t = REDUCE_MOTION ? 1 : Math.min(1, (now - t0) / 900);
-    mapView = t < 1 ? mix(ease(t)) : to;
+    const t = Math.min(1, (now - t0) / fly.ms);
+    mapView = t < 1 ? fly.at(ease(t)) : to;
     placeCamera();
     if (t < 1) requestAnimationFrame(frame);
+  })(t0);
+}
+
+// Readers who asked their computer for less motion: no flight, the map fades out and back in at the new view
+const mapLayers = () => document.querySelectorAll('#mapsvg, #pinsvg');
+function mapFade(o) { mapLayers().forEach(el => el.style.opacity = o); }
+function fadeTo(to, run, t0) {
+  const OUT = 220, IN = 380;   // milliseconds
+  let switched = false;
+  (function frame(now) {
+    if (run !== glide) return;
+    const ms = now - t0;
+    if (ms >= OUT && !switched) { switched = true; mapView = to; placeCamera(); applyLayers(false); }
+    mapFade(ms < OUT ? 1 - ms / OUT : Math.min(1, (ms - OUT) / IN));
+    if (ms < OUT + IN) requestAnimationFrame(frame);
   })(t0);
 }
 

@@ -1,5 +1,18 @@
 # STATUS — NBTC digest web page
 
+## 30 October 2026, later (smoother map moves between sections)
+
+- A. found the map move after section 2 felt like a snap. **Cause:** the map slid its view box straight from Bangkok/EEC (zoomed in) to the southern landings (~6° south) in 0.9 s, so it raced across more than a screen while still zoomed in.
+- **Change (`ep01-data-centers/index.html`, new `flight()` function):** every section change is now a timed "flight": zoom out, pan, zoom back in, using d3's built-in smooth-zoom path. Longer trips take longer (0.8–2.2 s; section 2→3 is about 1.5 s). The opening-screen move is still tied to scrolling, unchanged.
+- **Why timed, not tied to scrolling:** A. chose it; it fixes the snap with a small change, and fast scrollers would still see jumps with the scroll-tied version.
+- Checked locally: the 2→3 path zooms out to ~10° wide mid-way, then settles exactly on section 3; no errors. Not yet committed or put live.
+- **Found why A. saw no movement at all in Brave:** Windows "Animation effects" is off on this laptop (Settings → Accessibility → Visual effects). Browsers pass that on as "reader wants less motion", and the page skipped every map move for such readers. This also explains the original "snappy" report.
+- **Decision (A.):** readers with less motion get a **short fade** instead of a jump: the map fades out (~0.2 s), switches view while hidden, fades back in (~0.4 s). Everyone else gets the flight. **Why:** respects readers who turn motion off on purpose (it can make people feel unwell), without the hard snap. New `fadeTo()` / `mapFade()` in `index.html`.
+
+**State now:** flight + fade working locally, not live.
+**Next action:** A. checks both in a browser (fade with Animation effects off, flight with it on), then commit, push to github.io and check the live page.
+**Waiting on / open questions:** whether the speed feels right (easy to tune: the 0.8–2.2 s flight limits, the 0.2/0.4 s fade).
+
 ## 30 October 2026 (cable labels reworded, author byline added)
 
 - A. reworded the two labels on the cable drawing to make the legal line clearer: foreign ownership is allowed **outside Thai waters**, but the part **inside Thailand** must be run by a majority-Thai licensee (previously just "sea" vs "land").
