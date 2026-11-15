@@ -1,0 +1,2368 @@
+{
+ "source": {
+  "title": "Mobile Spectrum Report",
+  "edition": "2026 Edition",
+  "publisher": "GSMA",
+  "published": "October 2026",
+  "networks_data": "GSMA Spectrum Navigator, provided by GSMA Intelligence",
+  "devices_data": "GAMBoD database, provided by the Global Mobile Suppliers Association (GSA)"
+ },
+ "stats": {
+  "broadbandSubscribers": {
+   "value": "4.7 billion",
+   "unit": "mobile broadband subscribers worldwide (intro text)",
+   "page": 6
+  },
+  "uniqueSubscribers": {
+   "value": "4.7 billion",
+   "unit": "unique mobile subscribers (infographic label)",
+   "page": 6
+  },
+  "gdpContribution": {
+   "value": "$11.3 trillion",
+   "unit": "contribution of mobile technologies and services to global GDP by 2030",
+   "page": 6
+  },
+  "gdpShare": {
+   "value": "8.4%",
+   "unit": "of global GDP (same contribution, by 2030)",
+   "page": 6
+  },
+  "popConnected": {
+   "value": "59%",
+   "unit": "of global population: connected",
+   "page": 6
+  },
+  "popUsageGap": {
+   "value": "38%",
+   "unit": "of global population: part of the usage gap",
+   "page": 6
+  },
+  "popCoverageGap": {
+   "value": "3%",
+   "unit": "of global population: in the coverage gap",
+   "page": 6
+  },
+  "fiveGShare2030": {
+   "value": "57%",
+   "unit": "of all mobile connections forecast to be on 5G by 2030",
+   "page": 6
+  },
+  "subGhzAddedMhz": {
+   "value": "50 MHz",
+   "unit": "additional sub-1 GHz spectrum, linked to the next two figures",
+   "page": 6
+  },
+  "coverage4gPp": {
+   "value": "7pp",
+   "unit": "percentage point increase in 4G coverage linked to additional 50 MHz",
+   "page": 6
+  },
+  "coverage5gPp": {
+   "value": "11pp",
+   "unit": "percentage point increase in 5G coverage linked to additional 50 MHz",
+   "page": 6
+  },
+  "urbanConstrained": {
+   "value": "over 50%",
+   "unit": "of the world's urban population in cities capacity-constrained by 2030 if mid-band stays at today's levels",
+   "page": 6
+  },
+  "midBandNeeded": {
+   "value": "2-2.5 GHz",
+   "unit": "mid-band spectrum required globally",
+   "page": 6
+  },
+  "midBandNeededYears": {
+   "value": "2035-2040",
+   "unit": "period when that mid-band spectrum will be required to meet demand",
+   "page": 6
+  },
+  "sixGConnections2040": {
+   "value": "5 billion",
+   "unit": "6G connections expected by 2040",
+   "page": 6
+  },
+  "sixGPenetration2040": {
+   "value": "54%",
+   "unit": "6G market penetration by 2040",
+   "page": 6
+  },
+  "upper6Population": {
+   "value": "more than 80%",
+   "unit": "of the world's population in countries that now support the upper 6 GHz band for mobile",
+   "page": 6
+  },
+  "nextWrc": {
+   "value": "2027",
+   "unit": "the next WRC, with power to harmonise further spectrum for mobile",
+   "page": 6
+  },
+  "nextSpace": {
+   "value": "4.5 & 7-8 GHz",
+   "unit": "bands called the next space for mobile to evolve in mid-bands",
+   "page": 6
+  },
+  "b35Countries": {
+   "value": "over 90",
+   "unit": "countries with live 5G networks using 3.3-4.2 GHz",
+   "page": 23
+  },
+  "b35LaunchShare": {
+   "value": "more than 60%",
+   "unit": "of global 5G launches rely on the 3.5 GHz band",
+   "page": 23
+  }
+ },
+ "events": [
+  {
+   "id": "1987",
+   "label": "1987",
+   "year": 1987,
+   "future": false
+  },
+  {
+   "id": "warc-92",
+   "label": "WARC-92",
+   "year": 1992,
+   "future": false
+  },
+  {
+   "id": "wrc-2000",
+   "label": "WRC-2000",
+   "year": 2000,
+   "future": false
+  },
+  {
+   "id": "wrc-07",
+   "label": "WRC-07",
+   "year": 2007,
+   "future": false
+  },
+  {
+   "id": "wrc-12",
+   "label": "WRC-12",
+   "year": 2012,
+   "future": false
+  },
+  {
+   "id": "wrc-15",
+   "label": "WRC-15",
+   "year": 2015,
+   "future": false
+  },
+  {
+   "id": "wrc-19",
+   "label": "WRC-19",
+   "year": 2019,
+   "future": false
+  },
+  {
+   "id": "wrc-23",
+   "label": "WRC-23",
+   "year": 2023,
+   "future": false
+  },
+  {
+   "id": "wrc-27",
+   "label": "WRC-27",
+   "year": 2027,
+   "future": true
+  },
+  {
+   "id": "wrc-31",
+   "label": "WRC-31",
+   "year": 2031,
+   "future": true
+  }
+ ],
+ "bands": [
+  {
+   "id": "600-mhz",
+   "name": "600 MHz",
+   "group": "low",
+   "pdf_page": 10,
+   "range_lines": [
+    "617-652 MHz / 663-698 MHz",
+    "612-652 MHz / 663-703 MHz"
+   ],
+   "min_mhz": 612,
+   "max_mhz": 703,
+   "gpp": [
+    "n71",
+    "n105"
+   ],
+   "plans": [
+    {
+     "label": "n71",
+     "blocks": [
+      {
+       "from": 617,
+       "to": 652,
+       "kind": "downlink",
+       "label": null
+      },
+      {
+       "from": 663,
+       "to": 698,
+       "kind": "uplink",
+       "label": null
+      }
+     ]
+    },
+    {
+     "label": "n105",
+     "blocks": [
+      {
+       "from": 612,
+       "to": 652,
+       "kind": "downlink",
+       "label": null
+      },
+      {
+       "from": 663,
+       "to": 703,
+       "kind": "uplink",
+       "label": null
+      }
+     ]
+    }
+   ],
+   "networks": {
+    "count": 10,
+    "qualifier": "approximately",
+    "split": null,
+    "note": null
+   },
+   "devices": {
+    "count": 1100,
+    "qualifier": "over",
+    "alt": [],
+    "note": "n71 ecosystem devices only; no n105 figure"
+   },
+   "gens": [
+    "5G"
+   ],
+   "gens_future": [
+    "6G"
+   ]
+  },
+  {
+   "id": "700-mhz",
+   "name": "700 MHz",
+   "group": "low",
+   "pdf_page": 11,
+   "range_lines": [
+    "703-733 MHz / 758-788 MHz",
+    "703-733 MHz / 758-788 MHz (EMEA)"
+   ],
+   "min_mhz": 703,
+   "max_mhz": 803,
+   "gpp": [
+    "b28",
+    "n28"
+   ],
+   "plans": [
+    {
+     "label": "b28, n28",
+     "blocks": [
+      {
+       "from": 703,
+       "to": 748,
+       "kind": "uplink",
+       "label": null
+      },
+      {
+       "from": 758,
+       "to": 803,
+       "kind": "downlink",
+       "label": null
+      }
+     ]
+    },
+    {
+     "label": null,
+     "blocks": [
+      {
+       "from": 703,
+       "to": 733,
+       "kind": "uplink",
+       "label": null
+      },
+      {
+       "from": 758,
+       "to": 788,
+       "kind": "downlink",
+       "label": null
+      }
+     ],
+     "note": "second row has no label in the diagram; heading ranges (703-733/758-788) match this row, not the labelled one"
+    }
+   ],
+   "networks": {
+    "count": 261,
+    "qualifier": "approximately",
+    "split": {
+     "4G": {
+      "count": 170,
+      "qualifier": "around"
+     },
+     "5G": {
+      "count": 90,
+      "qualifier": "around"
+     }
+    },
+    "note": null
+   },
+   "devices": {
+    "count": 10000,
+    "qualifier": "over",
+    "alt": [],
+    "note": null
+   },
+   "gens": [
+    "4G",
+    "5G"
+   ],
+   "gens_future": [
+    "6G"
+   ],
+   "gpp_in_text": [
+    "b103",
+    "Band 67",
+    "n12",
+    "n13",
+    "n14"
+   ]
+  },
+  {
+   "id": "800-mhz",
+   "name": "800 MHz",
+   "group": "low",
+   "pdf_page": 12,
+   "range_lines": [
+    "791-821 MHz / 832-862 MHz"
+   ],
+   "min_mhz": 791,
+   "max_mhz": 862,
+   "gpp": [
+    "n/b20"
+   ],
+   "plans": [
+    {
+     "label": null,
+     "blocks": [
+      {
+       "from": 791,
+       "to": 821,
+       "kind": "downlink",
+       "label": null
+      },
+      {
+       "from": 832,
+       "to": 862,
+       "kind": "uplink",
+       "label": null
+      }
+     ]
+    }
+   ],
+   "networks": {
+    "count": 227,
+    "qualifier": "approximately",
+    "split": null,
+    "note": null
+   },
+   "devices": {
+    "count": 15000,
+    "qualifier": "around",
+    "alt": [],
+    "note": null
+   },
+   "gens": [
+    "4G",
+    "5G"
+   ],
+   "gens_future": []
+  },
+  {
+   "id": "850-mhz",
+   "name": "850 MHz",
+   "group": "low",
+   "pdf_page": 13,
+   "range_lines": [
+    "824-849 MHz / 869-894 MHz"
+   ],
+   "min_mhz": 824,
+   "max_mhz": 894,
+   "gpp": [
+    "b5",
+    "b18",
+    "b19",
+    "b26",
+    "n5",
+    "n18",
+    "n26",
+    "n89"
+   ],
+   "plans": [
+    {
+     "label": null,
+     "blocks": [
+      {
+       "from": 824,
+       "to": 849,
+       "kind": "uplink",
+       "label": null
+      },
+      {
+       "from": 869,
+       "to": 894,
+       "kind": "downlink",
+       "label": null
+      }
+     ]
+    }
+   ],
+   "networks": {
+    "count": 157,
+    "qualifier": "approximately",
+    "split": null,
+    "note": null
+   },
+   "devices": {
+    "count": 18000,
+    "qualifier": "over",
+    "alt": [],
+    "note": null
+   },
+   "gens": [
+    "2G",
+    "3G",
+    "4G",
+    "5G"
+   ],
+   "gens_future": []
+  },
+  {
+   "id": "900-mhz",
+   "name": "900 MHz",
+   "group": "low",
+   "pdf_page": 14,
+   "range_lines": [
+    "880-915 MHz / 925-960 MHz"
+   ],
+   "min_mhz": 880,
+   "max_mhz": 960,
+   "gpp": [
+    "b8",
+    "n8"
+   ],
+   "plans": [
+    {
+     "label": null,
+     "blocks": [
+      {
+       "from": 880,
+       "to": 915,
+       "kind": "uplink",
+       "label": null
+      },
+      {
+       "from": 925,
+       "to": 960,
+       "kind": "downlink",
+       "label": null
+      }
+     ]
+    }
+   ],
+   "networks": {
+    "count": 647,
+    "qualifier": "approximately",
+    "split": null,
+    "note": null
+   },
+   "devices": {
+    "count": 17000,
+    "qualifier": "over",
+    "alt": [],
+    "note": null
+   },
+   "gens": [
+    "2G",
+    "3G",
+    "4G",
+    "5G"
+   ],
+   "gens_future": []
+  },
+  {
+   "id": "1500-mhz",
+   "name": "1500 MHz",
+   "group": "mid",
+   "pdf_page": 16,
+   "range_lines": [
+    "1427-1518 MHz"
+   ],
+   "min_mhz": 1427,
+   "max_mhz": 1518,
+   "gpp": [
+    "b32",
+    "b50/51",
+    "b74",
+    "b75/76",
+    "n50/51",
+    "n74",
+    "n75/76",
+    "n91/92",
+    "n93/94"
+   ],
+   "plans": [
+    {
+     "label": "b75/76, n75/76",
+     "blocks": [
+      {
+       "from": 1427,
+       "to": 1517,
+       "kind": "sdl",
+       "label": "SDL"
+      }
+     ]
+    },
+    {
+     "label": "b74, n74",
+     "blocks": [
+      {
+       "from": 1427,
+       "to": 1470,
+       "kind": "uplink",
+       "label": "FDD"
+      },
+      {
+       "from": 1475,
+       "to": 1518,
+       "kind": "downlink",
+       "label": "FDD"
+      }
+     ]
+    },
+    {
+     "label": "n50/51",
+     "blocks": [
+      {
+       "from": 1427,
+       "to": 1517,
+       "kind": "tdd",
+       "label": "TDD"
+      }
+     ]
+    }
+   ],
+   "networks": {
+    "count": 11,
+    "qualifier": "approximately",
+    "split": null,
+    "note": null
+   },
+   "devices": {
+    "count": 1700,
+    "qualifier": "over",
+    "alt": [],
+    "note": null
+   },
+   "gens": [
+    "4G",
+    "5G"
+   ],
+   "gens_future": [],
+   "note_print": "SDL and TDD blocks end at 1517 MHz, FDD at 1518 MHz as printed"
+  },
+  {
+   "id": "1800-mhz",
+   "name": "1800 MHz",
+   "group": "mid",
+   "pdf_page": 17,
+   "range_lines": [
+    "1710-1785 / 1805-1880 MHz"
+   ],
+   "min_mhz": 1710,
+   "max_mhz": 1880,
+   "gpp": [
+    "b3",
+    "n3"
+   ],
+   "plans": [
+    {
+     "label": null,
+     "blocks": [
+      {
+       "from": 1710,
+       "to": 1785,
+       "kind": "uplink",
+       "label": null
+      },
+      {
+       "from": 1805,
+       "to": 1880,
+       "kind": "downlink",
+       "label": null
+      }
+     ]
+    }
+   ],
+   "networks": {
+    "count": 773,
+    "qualifier": "approximately",
+    "split": null,
+    "note": null
+   },
+   "devices": {
+    "count": 23000,
+    "qualifier": "over",
+    "alt": [],
+    "note": null
+   },
+   "gens": [
+    "2G",
+    "4G",
+    "5G"
+   ],
+   "gens_future": []
+  },
+  {
+   "id": "pcs-1900-mhz",
+   "name": "PCS (1900 MHz)",
+   "group": "mid",
+   "pdf_page": 18,
+   "range_lines": [
+    "1850-1910 / 1930-1990 MHz"
+   ],
+   "min_mhz": 1850,
+   "max_mhz": 1990,
+   "gpp": [
+    "b2",
+    "n2"
+   ],
+   "plans": [
+    {
+     "label": null,
+     "blocks": [
+      {
+       "from": 1850,
+       "to": 1910,
+       "kind": "uplink",
+       "label": null
+      },
+      {
+       "from": 1930,
+       "to": 1990,
+       "kind": "downlink",
+       "label": null
+      }
+     ]
+    }
+   ],
+   "networks": {
+    "count": 167,
+    "qualifier": "approximately",
+    "split": null,
+    "note": "predominately in the Americas and the Caribbean"
+   },
+   "devices": {
+    "count": 11000,
+    "qualifier": "around",
+    "alt": [],
+    "note": null
+   },
+   "gens": [
+    "2G",
+    "4G",
+    "5G"
+   ],
+   "gens_future": [],
+   "gpp_note": "extended PCS is n25"
+  },
+  {
+   "id": "aws-1700-2100-mhz",
+   "name": "AWS (1700/2100 MHz)",
+   "group": "mid",
+   "pdf_page": 19,
+   "range_lines": [
+    "1710-1780 / 2110-2180 MHz"
+   ],
+   "min_mhz": 1710,
+   "max_mhz": 2180,
+   "gpp": [
+    "b4",
+    "n66"
+   ],
+   "plans": [
+    {
+     "label": null,
+     "blocks": [
+      {
+       "from": 1710,
+       "to": 1755,
+       "kind": "uplink",
+       "label": "AWS-1"
+      },
+      {
+       "from": 1755,
+       "to": 1780,
+       "kind": "uplink",
+       "label": "AWS-3"
+      },
+      {
+       "from": 2110,
+       "to": 2155,
+       "kind": "downlink",
+       "label": "AWS-1"
+      },
+      {
+       "from": 2155,
+       "to": 2180,
+       "kind": "downlink",
+       "label": "AWS-3"
+      }
+     ],
+     "note": "a wave symbol (frequency break) separates the uplink and downlink halves"
+    }
+   ],
+   "networks": {
+    "count": 69,
+    "qualifier": "approximately",
+    "split": null,
+    "note": "printed sentence says 'in the PCS band predominately in the Americas and the Caribbean'"
+   },
+   "devices": {
+    "count": 11000,
+    "qualifier": "over",
+    "alt": [],
+    "note": "printed '11,000' with a comma"
+   },
+   "gens": [
+    "4G",
+    "5G"
+   ],
+   "gens_future": []
+  },
+  {
+   "id": "2-1-ghz",
+   "name": "2.1 GHz",
+   "group": "mid",
+   "pdf_page": 20,
+   "range_lines": [
+    "1920-1980 / 2110-2170 MHz"
+   ],
+   "min_mhz": 1920,
+   "max_mhz": 2170,
+   "gpp": [
+    "n1",
+    "b1"
+   ],
+   "plans": [
+    {
+     "label": null,
+     "blocks": [
+      {
+       "from": 1920,
+       "to": 1980,
+       "kind": "uplink",
+       "label": null
+      },
+      {
+       "from": 2110,
+       "to": 2170,
+       "kind": "downlink",
+       "label": null
+      }
+     ],
+     "note": "a wave symbol separates the halves"
+    }
+   ],
+   "networks": {
+    "count": 545,
+    "qualifier": "approximately",
+    "split": null,
+    "note": null
+   },
+   "devices": {
+    "count": 21000,
+    "qualifier": "over",
+    "alt": [],
+    "note": "printed 'devices', not 'ecosystem devices'"
+   },
+   "gens": [
+    "3G",
+    "4G",
+    "5G"
+   ],
+   "gens_future": []
+  },
+  {
+   "id": "2-3-ghz",
+   "name": "2.3 GHz",
+   "group": "mid",
+   "pdf_page": 21,
+   "range_lines": [
+    "2.3-2.4 GHz"
+   ],
+   "min_mhz": 2300,
+   "max_mhz": 2400,
+   "gpp": [
+    "b40",
+    "n30",
+    "n40"
+   ],
+   "plans": [
+    {
+     "label": "n40, b40",
+     "blocks": [
+      {
+       "from": 2300,
+       "to": 2400,
+       "kind": "tdd",
+       "label": null
+      }
+     ],
+     "note": "block has no label or arrow in the diagram; TDD comes from the overview text"
+    },
+    {
+     "label": "n30",
+     "blocks": [
+      {
+       "from": 2305,
+       "to": 2315,
+       "kind": "uplink",
+       "label": null
+      },
+      {
+       "from": 2350,
+       "to": 2360,
+       "kind": "downlink",
+       "label": null
+      }
+     ]
+    }
+   ],
+   "networks": {
+    "count": 67,
+    "qualifier": "approximately",
+    "split": null,
+    "note": null
+   },
+   "devices": {
+    "count": 14000,
+    "qualifier": "over",
+    "alt": [],
+    "note": null
+   },
+   "gens": [
+    "4G",
+    "5G"
+   ],
+   "gens_future": []
+  },
+  {
+   "id": "2-6-ghz",
+   "name": "2.6 GHz",
+   "group": "mid",
+   "pdf_page": 22,
+   "range_lines": [
+    "2.5-2.69 GHz"
+   ],
+   "min_mhz": 2500,
+   "max_mhz": 2690,
+   "gpp": [
+    "n7",
+    "n38",
+    "n41",
+    "n90"
+   ],
+   "plans": [
+    {
+     "label": "b7, n7, n38",
+     "blocks": [
+      {
+       "from": 2500,
+       "to": 2570,
+       "kind": "uplink",
+       "label": null
+      },
+      {
+       "from": 2570,
+       "to": 2620,
+       "kind": "tdd",
+       "label": "TDD"
+      },
+      {
+       "from": 2620,
+       "to": 2690,
+       "kind": "downlink",
+       "label": null
+      }
+     ],
+     "note": "row label printed 'FDD / TDD'; middle block labelled TDD"
+    },
+    {
+     "label": "n41",
+     "blocks": [
+      {
+       "from": 2500,
+       "to": 2690,
+       "kind": "tdd",
+       "label": "TDD"
+      }
+     ],
+     "note": "ticks printed 2.55, 2.6, 2.65 GHz"
+    }
+   ],
+   "networks": {
+    "count": 330,
+    "qualifier": "approximately",
+    "split": null,
+    "note": null
+   },
+   "devices": {
+    "count": 20000,
+    "qualifier": "over",
+    "alt": [],
+    "note": null
+   },
+   "gens": [
+    "4G",
+    "5G"
+   ],
+   "gens_future": [
+    "6G"
+   ]
+  },
+  {
+   "id": "3-5-ghz",
+   "name": "3.5 GHz",
+   "group": "mid",
+   "pdf_page": 23,
+   "range_lines": [
+    "3.3-4.2 GHz"
+   ],
+   "min_mhz": 3300,
+   "max_mhz": 4200,
+   "gpp": [
+    "n77",
+    "n78"
+   ],
+   "plans": [
+    {
+     "label": null,
+     "blocks": [
+      {
+       "from": 3300,
+       "to": 4200,
+       "kind": "tdd",
+       "label": "TDD"
+      }
+     ],
+     "note": "tick printed 3.8 GHz"
+    },
+    {
+     "label": "n78",
+     "blocks": [
+      {
+       "from": 3300,
+       "to": 3800,
+       "kind": "tdd",
+       "label": "n78"
+      }
+     ],
+     "note": "drawn as an arrow span under the TDD block"
+    },
+    {
+     "label": "n77",
+     "blocks": [
+      {
+       "from": 3300,
+       "to": 4200,
+       "kind": "tdd",
+       "label": "n77"
+      }
+     ],
+     "note": "drawn as an arrow span under the TDD block"
+    }
+   ],
+   "networks": {
+    "count": 302,
+    "qualifier": "approximately",
+    "split": null,
+    "note": "also: by early 2025 around 260 networks operational"
+   },
+   "devices": {
+    "count": 3500,
+    "qualifier": "over",
+    "alt": [
+     {
+      "year": 2022,
+      "count": 1300,
+      "qualifier": "just over"
+     },
+     {
+      "year": 2026,
+      "count": 3500,
+      "qualifier": "over"
+     }
+    ],
+    "note": "printed as 'the ecosystem'; no unit named"
+   },
+   "gens": [
+    "5G"
+   ],
+   "gens_future": [
+    "6G"
+   ]
+  },
+  {
+   "id": "4-5-ghz",
+   "name": "4.5 GHz",
+   "group": "mid",
+   "pdf_page": 24,
+   "range_lines": [
+    "4.4-5 GHz"
+   ],
+   "min_mhz": 4400,
+   "max_mhz": 5000,
+   "gpp": [
+    "n79"
+   ],
+   "plans": [
+    {
+     "label": null,
+     "blocks": [
+      {
+       "from": 4400,
+       "to": 4990,
+       "kind": "tdd",
+       "label": "TDD"
+      }
+     ],
+     "note": "heading says 4.4-5 GHz; diagram and overview say 4.4-4.99 GHz; tick printed 4.8 GHz"
+    }
+   ],
+   "networks": {
+    "count": 4,
+    "qualifier": null,
+    "split": null,
+    "note": "printed 'four live networks'"
+   },
+   "devices": {
+    "count": 1500,
+    "qualifier": "over",
+    "alt": [
+     {
+      "year": 2022,
+      "count": 700,
+      "qualifier": "about"
+     },
+     {
+      "year": 2026,
+      "count": 1500,
+      "qualifier": "over"
+     }
+    ],
+    "note": "printed as 'the ecosystem'; no unit named"
+   },
+   "gens": [
+    "5G"
+   ],
+   "gens_future": [
+    "5G-Advanced",
+    "6G"
+   ]
+  },
+  {
+   "id": "6-ghz",
+   "name": "6 GHz",
+   "group": "mid",
+   "pdf_page": 25,
+   "range_lines": [
+    "6.425-7.125 GHz"
+   ],
+   "min_mhz": 6425,
+   "max_mhz": 7125,
+   "gpp": [
+    "n104"
+   ],
+   "plans": [
+    {
+     "label": null,
+     "blocks": [
+      {
+       "from": 6425,
+       "to": 7125,
+       "kind": "tdd",
+       "label": "TDD"
+      }
+     ]
+    }
+   ],
+   "networks": {
+    "count": 2,
+    "qualifier": null,
+    "split": null,
+    "note": "printed 'two networks deployed in the upper 6 GHz band'"
+   },
+   "devices": {
+    "count": null,
+    "qualifier": null,
+    "alt": [],
+    "note": "no device figure printed"
+   },
+   "gens": [],
+   "gens_future": [
+    "5G-Advanced",
+    "6G"
+   ]
+  },
+  {
+   "id": "26-ghz",
+   "name": "26 GHz",
+   "group": "high",
+   "pdf_page": 27,
+   "range_lines": [
+    "24.25-27.5 GHz"
+   ],
+   "min_mhz": 24250,
+   "max_mhz": 27500,
+   "gpp": [
+    "n258"
+   ],
+   "plans": [
+    {
+     "label": null,
+     "blocks": [
+      {
+       "from": 24250,
+       "to": 27500,
+       "kind": "tdd",
+       "label": "TDD"
+      }
+     ]
+    }
+   ],
+   "networks": {
+    "count": 27,
+    "qualifier": "approximately",
+    "split": null,
+    "note": null
+   },
+   "devices": {
+    "count": 100,
+    "qualifier": "nearly",
+    "alt": [],
+    "note": null
+   },
+   "gens": [],
+   "gens_future": []
+  },
+  {
+   "id": "28-ghz",
+   "name": "28 GHz",
+   "group": "high",
+   "pdf_page": 28,
+   "range_lines": [
+    "26.5-29.5 GHz"
+   ],
+   "min_mhz": 26500,
+   "max_mhz": 29500,
+   "gpp": [
+    "n257",
+    "n261"
+   ],
+   "plans": [
+    {
+     "label": "n257",
+     "blocks": [
+      {
+       "from": 26500,
+       "to": 29500,
+       "kind": "tdd",
+       "label": "TDD"
+      }
+     ]
+    },
+    {
+     "label": "n261",
+     "blocks": [
+      {
+       "from": 27500,
+       "to": 28350,
+       "kind": "tdd",
+       "label": "TDD"
+      }
+     ]
+    }
+   ],
+   "networks": {
+    "count": null,
+    "qualifier": null,
+    "split": null,
+    "note": "no network count printed"
+   },
+   "devices": {
+    "count": null,
+    "qualifier": null,
+    "alt": [
+     {
+      "range": "n257 (26.5-29.5 GHz)",
+      "count": 100,
+      "qualifier": "over"
+     },
+     {
+      "range": "n261 (27.5-28.35 GHz, used in the US)",
+      "count": 170,
+      "qualifier": "over"
+     }
+    ],
+    "note": "two device figures, one per 3GPP band; no single band figure"
+   },
+   "gens": [],
+   "gens_future": []
+  },
+  {
+   "id": "40-ghz",
+   "name": "40 GHz",
+   "group": "high",
+   "pdf_page": 29,
+   "range_lines": [
+    "37-43.5 GHz"
+   ],
+   "min_mhz": 37000,
+   "max_mhz": 43500,
+   "gpp": [
+    "n259",
+    "n260"
+   ],
+   "plans": [
+    {
+     "label": null,
+     "blocks": [
+      {
+       "from": 37000,
+       "to": 43500,
+       "kind": "tdd",
+       "label": "TDD"
+      }
+     ]
+    }
+   ],
+   "networks": {
+    "count": 3,
+    "qualifier": "approximately",
+    "split": null,
+    "note": null
+   },
+   "devices": {
+    "count": 150,
+    "qualifier": null,
+    "alt": [],
+    "note": "printed '150 ecosystem devices' with no qualifier"
+   },
+   "gens": [],
+   "gens_future": []
+  },
+  {
+   "id": "50-ghz",
+   "name": "50 GHz",
+   "group": "high",
+   "pdf_page": 30,
+   "range_lines": [
+    "47.5-48.2 GHz"
+   ],
+   "min_mhz": 47500,
+   "max_mhz": 48200,
+   "gpp": [
+    "n262"
+   ],
+   "plans": [
+    {
+     "label": null,
+     "blocks": [
+      {
+       "from": 47500,
+       "to": 48200,
+       "kind": "tdd",
+       "label": "TDD"
+      }
+     ]
+    }
+   ],
+   "networks": {
+    "count": 0,
+    "qualifier": null,
+    "split": null,
+    "note": "printed 'no live networks'"
+   },
+   "devices": {
+    "count": null,
+    "qualifier": null,
+    "alt": [],
+    "note": null
+   },
+   "gens": [],
+   "gens_future": []
+  },
+  {
+   "id": "66-ghz",
+   "name": "66 GHz",
+   "group": "high",
+   "pdf_page": 31,
+   "range_lines": [
+    "66-71 GHz"
+   ],
+   "min_mhz": 66000,
+   "max_mhz": 71000,
+   "gpp": [
+    "n263"
+   ],
+   "plans": [
+    {
+     "label": null,
+     "blocks": [
+      {
+       "from": 66000,
+       "to": 71000,
+       "kind": "tdd",
+       "label": "TDD"
+      }
+     ]
+    }
+   ],
+   "networks": {
+    "count": 0,
+    "qualifier": null,
+    "split": null,
+    "note": "printed 'no live networks'"
+   },
+   "devices": {
+    "count": null,
+    "qualifier": null,
+    "alt": [],
+    "note": null
+   },
+   "gens": [],
+   "gens_future": []
+  }
+ ],
+ "pages": [
+  {
+   "id": "600-mhz",
+   "group": "low",
+   "bands": [
+    "600-mhz"
+   ],
+   "image": "low-1",
+   "events": [
+    {
+     "event": "wrc-15",
+     "scope": "regions",
+     "itu": [
+      2,
+      3
+     ],
+     "band": null
+    },
+    {
+     "event": "wrc-23",
+     "scope": "some",
+     "itu": [
+      1
+     ],
+     "band": null
+    },
+    {
+     "event": "wrc-31",
+     "scope": "future",
+     "itu": null,
+     "band": null
+    }
+   ],
+   "where": [
+    {
+     "id": "w1",
+     "level": "area",
+     "status": "use",
+     "places": [
+      "north-america",
+      "caribbean",
+      "middle-east"
+     ],
+     "band": null,
+     "en": "n71 is assigned and in use in these regions."
+    },
+    {
+     "id": "w2",
+     "level": "area",
+     "status": "plan",
+     "places": [
+      "apac"
+     ],
+     "band": null,
+     "en": "n105 is being developed, particularly in APAC."
+    },
+    {
+     "id": "w3",
+     "level": "itu",
+     "status": "identified",
+     "partial": true,
+     "places": [
+      "itu2",
+      "itu3"
+     ],
+     "band": null,
+     "en": "Provisions for parts of these Regions came at WRC-15."
+    },
+    {
+     "id": "w4",
+     "level": "itu",
+     "status": "identified",
+     "partial": true,
+     "places": [
+      "itu1"
+     ],
+     "band": null,
+     "en": "Some countries in Region 1 had footnotes expanded at WRC-23."
+    }
+   ]
+  },
+  {
+   "id": "700-mhz",
+   "group": "low",
+   "bands": [
+    "700-mhz"
+   ],
+   "image": "low-1",
+   "events": [
+    {
+     "event": "wrc-07",
+     "scope": "regions",
+     "itu": null,
+     "band": null
+    },
+    {
+     "event": "wrc-12",
+     "scope": "regions",
+     "itu": null,
+     "band": null
+    },
+    {
+     "event": "wrc-15",
+     "scope": "regions",
+     "itu": [
+      1
+     ],
+     "band": null
+    }
+   ],
+   "where": [
+    {
+     "id": "w1",
+     "level": "global",
+     "status": "identified",
+     "places": [],
+     "band": null,
+     "en": "Harmonised in all three ITU Regions."
+    },
+    {
+     "id": "w2",
+     "level": "area",
+     "status": "use",
+     "places": [
+      "apac",
+      "latin-america"
+     ],
+     "band": null,
+     "en": "Widely used for 4G and 5G, with 2 x 45 MHz."
+    },
+    {
+     "id": "w3",
+     "level": "itu",
+     "status": "use",
+     "places": [
+      "itu1"
+     ],
+     "band": null,
+     "en": "2x30 MHz FDD plan plus 20 MHz SDL; final decisions at WRC-15."
+    },
+    {
+     "id": "w4",
+     "level": "country",
+     "status": "plan",
+     "places": [
+      "usa",
+      "can"
+     ],
+     "band": null,
+     "en": "A different plan: 80 MHz in total, including 10 MHz SDL."
+    },
+    {
+     "id": "w5",
+     "level": "area",
+     "status": "plan",
+     "places": [
+      "north-america"
+     ],
+     "band": null,
+     "en": "North America has its own band plan: n12, n13, n14."
+    }
+   ]
+  },
+  {
+   "id": "800-mhz",
+   "group": "low",
+   "bands": [
+    "800-mhz"
+   ],
+   "image": "low-2",
+   "events": [
+    {
+     "event": "wrc-07",
+     "scope": "regions",
+     "itu": [
+      1
+     ],
+     "band": null
+    }
+   ],
+   "where": [
+    {
+     "id": "w1",
+     "level": "itu",
+     "status": "identified",
+     "places": [
+      "itu1"
+     ],
+     "band": null,
+     "en": "The original digital dividend band; identified for IMT at WRC-07."
+    },
+    {
+     "id": "w2",
+     "level": "area",
+     "status": "use",
+     "places": [
+      "emea"
+     ],
+     "band": null,
+     "en": "Widely assigned; use spread rapidly for 4G launches."
+    }
+   ]
+  },
+  {
+   "id": "850-mhz",
+   "group": "low",
+   "bands": [
+    "850-mhz"
+   ],
+   "image": "low-2",
+   "events": [
+    {
+     "event": "wrc-2000",
+     "scope": "global",
+     "itu": null,
+     "band": null
+    }
+   ],
+   "where": [
+    {
+     "id": "w1",
+     "level": "global",
+     "status": "identified",
+     "places": [],
+     "band": null,
+     "en": "806-960 MHz was identified globally for IMT at WRC-2000."
+    },
+    {
+     "id": "w2",
+     "level": "area",
+     "status": "use",
+     "partial_places": [
+      "apac"
+     ],
+     "places": [
+      "americas",
+      "apac"
+     ],
+     "band": null,
+     "en": "The first cellular band throughout the Americas and parts of APAC."
+    }
+   ]
+  },
+  {
+   "id": "900-mhz",
+   "group": "low",
+   "bands": [
+    "900-mhz"
+   ],
+   "image": "low-2",
+   "events": [
+    {
+     "event": "1987",
+     "scope": "europe-some",
+     "itu": null,
+     "band": null
+    },
+    {
+     "event": "wrc-2000",
+     "scope": "global",
+     "itu": null,
+     "band": null
+    }
+   ],
+   "where": [
+    {
+     "id": "w1",
+     "level": "itu",
+     "status": "use",
+     "places": [
+      "itu1",
+      "itu2",
+      "itu3"
+     ],
+     "band": null,
+     "en": "The original GSM band, deployed in Regions 1, 2 and 3."
+    },
+    {
+     "id": "w2",
+     "level": "area",
+     "status": "use",
+     "places": [
+      "latin-america"
+     ],
+     "band": null,
+     "en": "Named as the Region 2 part of the GSM deployment."
+    },
+    {
+     "id": "w3",
+     "level": "area",
+     "status": "identified",
+     "partial": true,
+     "places": [
+      "europe"
+     ],
+     "band": null,
+     "en": "First harmonised in 1987 for GSM in some European countries."
+    },
+    {
+     "id": "w4",
+     "level": "itu",
+     "status": "use",
+     "partial": true,
+     "places": [
+      "itu2",
+      "itu3"
+     ],
+     "band": null,
+     "en": "Some countries mixed 900 MHz and 850 MHz assignments."
+    }
+   ]
+  },
+  {
+   "id": "1500-mhz",
+   "group": "mid",
+   "bands": [
+    "1500-mhz"
+   ],
+   "image": "mid-1",
+   "events": [
+    {
+     "event": "wrc-15",
+     "scope": "regions",
+     "itu": [
+      2,
+      3
+     ],
+     "band": null
+    }
+   ],
+   "where": [
+    {
+     "id": "w1",
+     "level": "itu",
+     "status": "identified",
+     "places": [
+      "itu2",
+      "itu3"
+     ],
+     "band": null,
+     "en": "Harmonised in Regions 2 and 3."
+    },
+    {
+     "id": "w2",
+     "level": "itu",
+     "status": "identified",
+     "places": [
+      "itu1"
+     ],
+     "band": null,
+     "en": "Parts of the band are harmonised in the Radio Regulations."
+    },
+    {
+     "id": "w3",
+     "level": "area",
+     "status": "identified",
+     "places": [
+      "europe",
+      "arab-world"
+     ],
+     "band": null,
+     "en": "Europe harmonised it for SDL; Arab Spectrum Management Group for TDD."
+    },
+    {
+     "id": "w4",
+     "level": "country",
+     "status": "use",
+     "places": [
+      "jpn"
+     ],
+     "band": null,
+     "en": "Already used in Japan with FDD."
+    },
+    {
+     "id": "w5",
+     "level": "country",
+     "status": "plan",
+     "places": [
+      "idn",
+      "ind",
+      "bra"
+     ],
+     "band": null,
+     "en": "Indonesia auctioned it for TDD; India and Brazil have it on the roadmap."
+    }
+   ]
+  },
+  {
+   "id": "1800-2100",
+   "group": "mid",
+   "bands": [
+    "1800-mhz",
+    "2-1-ghz"
+   ],
+   "image": "mid-1",
+   "events": [
+    {
+     "event": "wrc-2000",
+     "scope": "global",
+     "itu": null,
+     "band": "1800-mhz"
+    },
+    {
+     "event": "warc-92",
+     "scope": "global",
+     "itu": null,
+     "band": "2-1-ghz"
+    },
+    {
+     "event": "wrc-27",
+     "scope": "future",
+     "itu": null,
+     "band": "2-1-ghz"
+    }
+   ],
+   "where": [
+    {
+     "id": "w1",
+     "level": "global",
+     "status": "identified",
+     "places": [],
+     "band": "1800-mhz",
+     "en": "Used extensively throughout the world; identified for IMT at WRC-2000."
+    },
+    {
+     "id": "w2",
+     "level": "global",
+     "status": "identified",
+     "places": [],
+     "band": "2-1-ghz",
+     "en": "Identified globally at WARC-92."
+    },
+    {
+     "id": "w3",
+     "level": "area",
+     "status": "use",
+     "places": [
+      "europe",
+      "apac"
+     ],
+     "band": "2-1-ghz",
+     "en": "The primary 3G band in Europe, Asia and other regions."
+    }
+   ]
+  },
+  {
+   "id": "pcs-aws",
+   "group": "mid",
+   "bands": [
+    "pcs-1900-mhz",
+    "aws-1700-2100-mhz"
+   ],
+   "image": "mid-1",
+   "events": [
+    {
+     "event": "warc-92",
+     "scope": "global",
+     "itu": null,
+     "band": "pcs-1900-mhz"
+    },
+    {
+     "event": "wrc-2000",
+     "scope": "global",
+     "itu": null,
+     "band": "pcs-1900-mhz"
+    },
+    {
+     "event": "warc-92",
+     "scope": "identified",
+     "itu": null,
+     "band": "aws-1700-2100-mhz"
+    },
+    {
+     "event": "wrc-2000",
+     "scope": "identified",
+     "itu": null,
+     "band": "aws-1700-2100-mhz"
+    }
+   ],
+   "where": [
+    {
+     "id": "w1",
+     "level": "global",
+     "status": "identified",
+     "places": [],
+     "band": null,
+     "en": "Both sit in ranges identified globally for IMT."
+    },
+    {
+     "id": "w2",
+     "level": "area",
+     "status": "use",
+     "places": [
+      "americas",
+      "caribbean"
+     ],
+     "band": "pcs-1900-mhz",
+     "en": "A core part of mobile services, mostly here."
+    },
+    {
+     "id": "w3",
+     "level": "country",
+     "status": "use",
+     "places": [
+      "usa"
+     ],
+     "band": "aws-1700-2100-mhz",
+     "en": "AWS was originally introduced in the US and parts of the Americas."
+    },
+    {
+     "id": "w4",
+     "level": "area",
+     "status": "identified",
+     "places": [
+      "americas"
+     ],
+     "band": "aws-1700-2100-mhz",
+     "en": "AWS is harmonised primarily across the Americas, not globally."
+    },
+    {
+     "id": "w5",
+     "level": "area",
+     "status": "use",
+     "places": [
+      "americas",
+      "caribbean"
+     ],
+     "band": "aws-1700-2100-mhz",
+     "en": "AWS networks are predominately here (text says PCS band)."
+    }
+   ]
+  },
+  {
+   "id": "2-3-ghz",
+   "group": "mid",
+   "bands": [
+    "2-3-ghz"
+   ],
+   "image": "mid-2",
+   "events": [
+    {
+     "event": "wrc-07",
+     "scope": "global",
+     "itu": null,
+     "band": null
+    }
+   ],
+   "where": [
+    {
+     "id": "w1",
+     "level": "global",
+     "status": "identified",
+     "places": [],
+     "band": null,
+     "en": "First identified for IMT at WRC-07; globally harmonised."
+    }
+   ]
+  },
+  {
+   "id": "2-6-ghz",
+   "group": "mid",
+   "bands": [
+    "2-6-ghz"
+   ],
+   "image": "mid-2",
+   "events": [
+    {
+     "event": "wrc-2000",
+     "scope": "global",
+     "itu": null,
+     "band": null
+    }
+   ],
+   "where": [
+    {
+     "id": "w1",
+     "level": "global",
+     "status": "identified",
+     "places": [],
+     "band": null,
+     "en": "Harmonised globally for IMT at WRC-2000."
+    }
+   ]
+  },
+  {
+   "id": "3-5-ghz",
+   "group": "mid",
+   "bands": [
+    "3-5-ghz"
+   ],
+   "image": "mid-2",
+   "events": [
+    {
+     "event": "wrc-07",
+     "scope": "regions",
+     "itu": [
+      1,
+      2,
+      3
+     ],
+     "band": null
+    },
+    {
+     "event": "wrc-23",
+     "scope": "regions",
+     "itu": [
+      1,
+      2,
+      3
+     ],
+     "band": null
+    }
+   ],
+   "where": [
+    {
+     "id": "w1",
+     "level": "global",
+     "status": "identified",
+     "places": [],
+     "band": null,
+     "en": "3.5-3.8 GHz allocated in all three regions; 3.3-3.8 used globally."
+    },
+    {
+     "id": "w2",
+     "level": "itu",
+     "status": "identified",
+     "partial_places": [
+      "itu3"
+     ],
+     "places": [
+      "itu1",
+      "itu2",
+      "itu3"
+     ],
+     "band": null,
+     "en": "3.4-3.5 GHz allocated in Regions 1, 2 and part of 3."
+    },
+    {
+     "id": "w3",
+     "level": "itu",
+     "status": "identified",
+     "places": [
+      "itu2",
+      "itu3"
+     ],
+     "band": null,
+     "en": "An additional primary mobile allocation at 3.8-4.2 GHz."
+    }
+   ]
+  },
+  {
+   "id": "4-5-ghz",
+   "group": "mid",
+   "bands": [
+    "4-5-ghz"
+   ],
+   "image": "mid-3",
+   "events": [
+    {
+     "event": "wrc-15",
+     "scope": "identified",
+     "itu": null,
+     "band": null
+    },
+    {
+     "event": "wrc-19",
+     "scope": "some",
+     "itu": null,
+     "band": null
+    },
+    {
+     "event": "wrc-27",
+     "scope": "future",
+     "itu": null,
+     "band": null
+    }
+   ],
+   "where": [
+    {
+     "id": "w1",
+     "level": "country",
+     "status": "use",
+     "places": [
+      "chn",
+      "jpn",
+      "kor"
+     ],
+     "band": null,
+     "en": "Strong 5G NR device support in these markets."
+    },
+    {
+     "id": "w2",
+     "level": "area",
+     "status": "use",
+     "places": [
+      "apac"
+     ],
+     "band": null,
+     "en": "Current use of the band is greatest in Asia-Pacific."
+    },
+    {
+     "id": "w3",
+     "level": "area",
+     "status": "plan",
+     "partial": true,
+     "places": [
+      "rcc"
+     ],
+     "band": null,
+     "en": "Interest is increasing in parts of RCC."
+    }
+   ]
+  },
+  {
+   "id": "6-ghz",
+   "group": "mid",
+   "bands": [
+    "6-ghz"
+   ],
+   "image": "mid-3",
+   "events": [
+    {
+     "event": "wrc-23",
+     "scope": "regions",
+     "itu": null,
+     "band": null
+    }
+   ],
+   "where": [
+    {
+     "id": "w1",
+     "level": "area",
+     "status": "identified",
+     "places": [
+      "emea"
+     ],
+     "band": null,
+     "en": "WRC-23 identified the band throughout EMEA."
+    },
+    {
+     "id": "w2",
+     "level": "area",
+     "status": "identified",
+     "partial": true,
+     "places": [
+      "apac",
+      "americas"
+     ],
+     "band": null,
+     "en": "Identified in some countries in APAC and the Americas."
+    },
+    {
+     "id": "w3",
+     "level": "area",
+     "status": "plan",
+     "partial": true,
+     "places": [
+      "gcc",
+      "apac"
+     ],
+     "band": null,
+     "en": "Some countries here have already licensed the band."
+    }
+   ]
+  },
+  {
+   "id": "26-28-ghz",
+   "group": "high",
+   "bands": [
+    "26-ghz",
+    "28-ghz"
+   ],
+   "image": "high-1",
+   "events": [
+    {
+     "event": "wrc-19",
+     "scope": "global",
+     "itu": null,
+     "band": "26-ghz"
+    }
+   ],
+   "where": [
+    {
+     "id": "w1",
+     "level": "global",
+     "status": "identified",
+     "places": [],
+     "band": "26-ghz",
+     "en": "26 GHz identified for IMT globally at WRC-19."
+    },
+    {
+     "id": "w2",
+     "level": "global",
+     "status": "identified",
+     "places": [],
+     "band": "28-ghz",
+     "en": "n257 (26.5-29.5 GHz) is described as globally harmonised."
+    },
+    {
+     "id": "w3",
+     "level": "area",
+     "status": "use",
+     "places": [
+      "north-america"
+     ],
+     "band": "28-ghz",
+     "en": "The original mmWave band, used here."
+    },
+    {
+     "id": "w4",
+     "level": "country",
+     "status": "use",
+     "places": [
+      "kor",
+      "usa"
+     ],
+     "band": "28-ghz",
+     "en": "Used in South Korea; first mmWave launches in the US."
+    }
+   ]
+  },
+  {
+   "id": "40-66-ghz",
+   "group": "high",
+   "bands": [
+    "40-ghz",
+    "50-ghz",
+    "66-ghz"
+   ],
+   "image": "high-2",
+   "events": [
+    {
+     "event": "wrc-19",
+     "scope": "global",
+     "itu": null,
+     "band": "40-ghz"
+    },
+    {
+     "event": "wrc-19",
+     "scope": "some",
+     "itu": null,
+     "band": "50-ghz"
+    },
+    {
+     "event": "wrc-19",
+     "scope": "global",
+     "itu": null,
+     "band": "66-ghz"
+    }
+   ],
+   "where": [
+    {
+     "id": "w1",
+     "level": "global",
+     "status": "identified",
+     "places": [],
+     "band": "40-ghz",
+     "en": "40 GHz was harmonised globally at WRC-19."
+    },
+    {
+     "id": "w2",
+     "level": "global",
+     "status": "identified",
+     "places": [],
+     "band": "66-ghz",
+     "en": "66 GHz was identified globally at WRC-19."
+    }
+   ]
+  }
+ ],
+ "discrepancies": [
+  {
+   "id": "hdr-700",
+   "pages": [
+    11
+   ],
+   "text": "700 MHz: the heading ranges (703-733 / 758-788 MHz) match the second, unlabelled diagram row; the row labelled b28, n28 is 703-748 / 758-803 MHz."
+  },
+  {
+   "id": "aws-pcs",
+   "pages": [
+    19
+   ],
+   "text": "The AWS networks sentence says 'in the PCS band'; the AWS page otherwise concerns the AWS band."
+  },
+  {
+   "id": "dev-11000",
+   "pages": [
+    18,
+    19
+   ],
+   "text": "PCS ('around 11000') and AWS ('over 11,000') give near-identical device figures with different qualifiers and number formats."
+  },
+  {
+   "id": "b45-range",
+   "pages": [
+    24
+   ],
+   "text": "4.5 GHz: the heading says 4.4-5 GHz; the overview and the diagram say 4.4-4.99 GHz."
+  },
+  {
+   "id": "b1500-edge",
+   "pages": [
+    16
+   ],
+   "text": "1500 MHz: the heading gives 1427-1518 MHz; SDL and TDD blocks end at 1517 MHz, the FDD block at 1518 MHz."
+  },
+  {
+   "id": "n28-noplan",
+   "pages": [
+    28
+   ],
+   "text": "28 GHz gives device figures for n257 and n261 but no network count; the n261 subset has more devices (over 170) than the n257 range (over 100)."
+  },
+  {
+   "id": "b6-nodev",
+   "pages": [
+    25
+   ],
+   "text": "6 GHz gives a network count (two) but no device count."
+  },
+  {
+   "id": "eco-unit",
+   "pages": [
+    23,
+    24
+   ],
+   "text": "3.5 and 4.5 GHz give ecosystem figures for 2022 and 2026 without naming a unit; 3.5 GHz also says 'around 260 networks' by early 2025 and 'approximately 302' in 2026."
+  },
+  {
+   "id": "b26-fdd",
+   "pages": [
+    22
+   ],
+   "text": "2.6 GHz: the first diagram row is labelled 'FDD / TDD' while its outer blocks carry uplink and downlink arrows and the middle block is TDD."
+  },
+  {
+   "id": "ruler-vs-page",
+   "pages": [
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    25
+   ],
+   "text": "The mid-band ruler (p15) ranges differ from the band pages (e.g. 1.5 GHz 1.4-1.5 vs 1427-1518 MHz; upper 6 GHz 6.425-7.1 vs 6.425-7.125 GHz)."
+  },
+  {
+   "id": "ruler-45",
+   "pages": [
+    15,
+    24
+   ],
+   "text": "The p15 ruler shows '4.8 GHz 4.8-4.9 GHz' and 'Lower 6 GHz 5.9-6.4 GHz'; the band pages cover 4.5 GHz (4.4-5) and upper 6 GHz only."
+  },
+  {
+   "id": "b800-790",
+   "pages": [
+    9,
+    12
+   ],
+   "text": "800 MHz: the text says 790-862 MHz was allocated at WRC-07; the page range and ruler start at 791 MHz."
+  },
+  {
+   "id": "b700-sum",
+   "pages": [
+    11
+   ],
+   "text": "700 MHz: about 170 4G plus about 90 5G networks is 260, against 261 networks in total (rounded figures)."
+  },
+  {
+   "id": "sub-4.7",
+   "pages": [
+    6
+   ],
+   "text": "The p6 intro says '4.7 billion mobile broadband subscribers' while the infographic says '4.7 billion unique mobile subscribers'."
+  },
+  {
+   "id": "aws-name",
+   "pages": [
+    7,
+    19
+   ],
+   "text": "AWS is titled '(1700-2100 MHz)' in the index and '(1700/2100 MHz)' on its page."
+  },
+  {
+   "id": "band-overlap",
+   "pages": [
+    27,
+    28
+   ],
+   "text": "26 GHz (24.25-27.5) and 28 GHz (26.5-29.5) overlap between 26.5 and 27.5 GHz; the 28 GHz text says its lower part falls under the 26 GHz range."
+  },
+  {
+   "id": "wcdma",
+   "pages": [
+    32
+   ],
+   "text": "The acronym list prints WCDMA as 'Wideband Code Vision Multiple Access'."
+  },
+  {
+   "id": "naming",
+   "pages": [
+    11,
+    14,
+    18,
+    20
+   ],
+   "text": "Conference names vary in style (WRC-07, WRC07, WARC-92, WARC-1992, WRC-2000); 600 MHz device figures count n71 only."
+  }
+ ]
+}

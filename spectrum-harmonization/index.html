@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Spectrum Harmonization</title>
+<link rel="stylesheet" href="lib/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<!-- Fixed layers behind everything: two picture layers that cross-fade -->
+<div class="bg" id="bg" aria-hidden="true"><div class="bg-layer"></div><div class="bg-layer"></div></div>
+
+<button class="lang-switch" type="button" data-k="ui.toggle"></button>
+
+<!-- The spectrum: big on the cover, a bar along the top everywhere else (drawn by js/spectrum.js) -->
+<nav class="spectrum" id="spectrum" data-k-label="ui.bandNav"></nav>
+
+<main id="views">
+  <section class="view view-cover" id="cover" aria-labelledby="h-cover">
+    <div class="cover-text">
+      <noscript><p class="nojs" lang="en">Spectrum Harmonization: this page builds its text and maps with JavaScript. Please turn JavaScript on and reload.</p>
+        <p class="nojs" lang="th">หน้านี้ต้องใช้ JavaScript เพื่อแสดงเนื้อหาและแผนที่ กรุณาเปิด JavaScript แล้วโหลดหน้านี้ใหม่</p></noscript>
+      <p class="kicker rv" data-k="cover.kicker"></p>
+      <h1 id="h-cover" class="rv" tabindex="-1" data-k="cover.title"></h1>
+      <p class="subtitle rv" data-k="cover.subtitle"></p>
+    </div>
+    <div class="hero-slot" aria-hidden="true"></div>
+    <div class="cover-panels rv" aria-hidden="true">
+      <p class="cp-low"><span data-k="kinds.low.name"></span> <b data-k="kinds.low.role"></b></p>
+      <p class="cp-mid"><span data-k="kinds.mid.name"></span> <b data-k="kinds.mid.role"></b></p>
+      <p class="cp-gap"></p>
+      <p class="cp-high"><span data-k="kinds.high.name"></span> <b data-k="kinds.high.role"></b></p>
+    </div>
+    <div class="cover-foot rv">
+      <p class="notes-line"><span data-k="spectrum.scaleNote"></span> · <span data-k="spectrum.wavelengthNote"></span></p>
+      <p class="source"><span data-k="cover.source"></span> · <span data-k="cover.date"></span></p>
+    </div>
+    <p class="cue" aria-hidden="true"><span data-k="ui.cue"></span></p>
+  </section>
+
+  <section class="view view-why" id="why" aria-labelledby="h-why">
+    <div class="wrap">
+      <header class="view-head">
+        <h2 id="h-why" class="rv" tabindex="-1" data-k="why.title"></h2>
+        <p class="lede rv" data-k="why.lede"></p>
+      </header>
+      <ol class="payoffs">
+        <li class="rv"><span class="num">01</span><h3 data-k="why.p1.title"></h3><p data-k="why.p1.body"></p></li>
+        <li class="rv"><span class="num">02</span><h3 data-k="why.p2.title"></h3><p data-k="why.p2.body"></p></li>
+        <li class="rv"><span class="num">03</span><h3 data-k="why.p3.title"></h3><p data-k="why.p3.body"></p></li>
+      </ol>
+      <figure class="align-fig rv">
+        <svg class="align-svg" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <figcaption data-k="why.figure.caption"></figcaption>
+      </figure>
+      <dl class="stats" id="stats"></dl>
+    </div>
+  </section>
+
+  <section class="view view-kinds" id="kinds" aria-labelledby="h-kinds">
+    <div class="wrap">
+      <header class="view-head">
+        <h2 id="h-kinds" class="rv" tabindex="-1" data-k="kinds.title"></h2>
+        <p class="lede rv" data-k="kinds.lede"></p>
+      </header>
+      <div class="kinds" id="kind-panels"></div>
+    </div>
+  </section>
+
+  <!-- 15 band pages are inserted here by js/app.js, from bands.json -->
+
+  <section class="view view-next" id="next" aria-labelledby="h-next">
+    <div class="wrap">
+      <header class="view-head">
+        <h2 id="h-next" class="rv" tabindex="-1" data-k="next.title"></h2>
+        <p class="lede rv" data-k="next.lede"></p>
+      </header>
+      <ol class="facts">
+        <li class="rv"><h3 data-k="next.f1.title"></h3><p data-k="next.f1.body"></p></li>
+        <li class="rv"><h3 data-k="next.f2.title"></h3><p data-k="next.f2.body"></p></li>
+        <li class="rv"><h3 data-k="next.f3.title"></h3><p data-k="next.f3.body"></p></li>
+        <li class="rv"><h3 data-k="next.f4.title"></h3><p data-k="next.f4.body"></p></li>
+      </ol>
+      <div class="principles rv">
+        <h3 data-k="principle.title"></h3>
+        <ol>
+          <li data-k="principle.1"></li><li data-k="principle.2"></li><li data-k="principle.3"></li><li data-k="principle.4"></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="view view-index" id="index" aria-labelledby="h-index">
+    <div class="wrap">
+      <h2 id="h-index" tabindex="-1" data-k="index.title"></h2>
+      <div class="table-wrap">
+        <table class="band-table">
+          <thead><tr>
+            <th scope="col" data-k="index.col.band"></th><th scope="col" data-k="index.col.range"></th><th scope="col" data-k="index.col.group"></th>
+            <th scope="col" data-k="index.col.gpp"></th><th scope="col" class="n" data-k="index.col.networks"></th><th scope="col" class="n" data-k="index.col.devices"></th>
+            <th scope="col" data-k="index.col.harmonised"></th>
+          </tr></thead>
+          <tbody id="band-rows"></tbody>
+        </table>
+      </div>
+      <div class="index-cols">
+        <section><h3 data-k="gloss.title"></h3><dl class="gloss" id="gloss"></dl></section>
+        <section><h3 data-k="notes.title"></h3><ul class="notes" id="notes"></ul>
+          <h3 data-k="credits.title"></h3><ul class="credits" id="credits"></ul></section>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- One shared map + timeline panel for the band pages in the full-screen mode (js/map.js) -->
+<div class="geo-stage" id="geo-stage" aria-hidden="true"></div>
+
+<nav class="stepper" aria-label="steps">
+  <button type="button" class="step-prev" data-k-label="ui.prev"><span aria-hidden="true">←</span></button>
+  <span class="step-count" aria-hidden="true"></span>
+  <button type="button" class="step-next" data-k-label="ui.next"><span aria-hidden="true">→</span></button>
+</nav>
+<p class="sr-only" id="live" aria-live="polite" aria-atomic="true"></p>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<script defer src="lib/d3.min.js"></script>
+<script defer src="js/spectrum.js"></script>
+<script defer src="js/map.js"></script>
+<script defer src="js/app.js"></script>
+</body>
+</html>

@@ -1,5 +1,59 @@
 # STATUS — NBTC digest web page
 
+## 16 November 2026 (Spectrum Harmonization: A.'s first review round)
+
+**What we did** (all in `spectrum-harmonization/`, nothing committed or published)
+- **Cover:** new, brighter picture (city bay at blue hour) and a much bigger spectrum wave; the title is smaller so the wave is the hero.
+- **Low bands card:** new, brighter picture (river valley at dusk). Old pictures are not kept in the project; prompts and seeds are in `images/PROMPTS.md`.
+- **Map on band pages:** stays in one place at one size on every page; sits on its own dark panel so it no longer blends into the picture; "Identified globally" now always sits at the bottom of the map.
+- **Map meaning changed** (A.'s idea): colour strength = how far along the band is. Solid = in use, striped = assigned or planned, light tint = identified or harmonised, dashed outline = only some unnamed countries. Same legend on every page.
+
+**Decisions and why**
+- Each place got one status in `bands.json` (`status` on every `where` entry), read from the report's own wording. Judgement calls for A. to check: 700 MHz in USA/Canada is "planned" (report gives a band plan, does not say "used"); 1500 MHz in Europe and the Arab world is "harmonised" (regional agreement); 4.5 GHz in China/Japan/Korea is "in use" (report: device support there and utilisation greatest in Asia-Pacific); 6 GHz in GCC/APAC is "planned" (licensed, not launched).
+- On small laptop screens the map is a little smaller so the list and timeline under it always fit without scrolling.
+- `script.md`: the three old legend entries (ITU Region / wider area / country) were replaced by `ui.legend.use`, `.plan`, `.identified`, `.note`. A.'s other edits were not touched.
+
+**Lesson:** the local preview stops when the app goes idle; restart it before telling A. to open the page. Screenshots from the hidden browser pane can show a blank or previous view, so check the page's state directly.
+
+**State now:** review round 1 applied and checked in the preview (map position identical on all 15 pages, no errors), Thai and English.
+**Next action (A. continues on another machine, 17 Nov):** A.'s own to-do list:
+1. Edit the maps and their legends.
+2. Fix the Thai translation in `script.md`.
+3. Fix the font size on the cover page and the second page in the Thai version.
+
+**Where the work is:** on GitHub in the branch `spectrum-harmonization` (not on `main`, so the unfinished page is not on the public site). On the other machine: get the latest, switch to that branch, start the local preview. The `references/` videos and `source/` stay on this laptop only.
+**Waiting on / open questions:** A.'s check of the status judgement calls above; Thai wording of the new legend entries; still nothing committed, and `references/` should be kept off GitHub first.
+
+## 15 November 2026 (new topic page: Spectrum Harmonization, build in progress)
+
+A separate digest page (not episode 2) based on the GSMA *Mobile Spectrum Report, 2026 Edition*. Folder: `spectrum-harmonization/`. Nothing is committed or published.
+
+**What we did**
+- Read the whole report. It has 20 bands, four text sections per band, and **no maps or country lists**. Geography is only in sentences.
+- Extracted the data and had a second reader check it against the page pictures: no corrections needed. Result: `bands.json` (also lists 18 oddities inside the report itself).
+- Wrote `script.md` (313 text blocks, Thai and English; the Thai is a draft for A. to rewrite).
+- Built the map data and map drawing (`lib/world.json`, `lib/places.json`, `js/map.js`), tested on its own.
+- Generated 8 of 12 illustrations with ComfyUI (`images/`; prompts and seeds in `images/PROMPTS.md`).
+- Wrote `DESIGN.md` with the reasoning.
+
+**Decisions and why**
+- One scroll gesture = one step, same as arrow keys (A.'s request); every view fits one screen so the wheel has one job.
+- 15 band pages instead of 20: thin bands share a page (1800 + 2.1, PCS + AWS, 26 + 28, 40 + 50 + 66).
+- Map shows three honest levels: ITU Regions (looked up from ITU's definition, A. allowed this), loose areas like EMEA (marked approximate), and countries the report names. A conference timeline sits under the map.
+- Generated still images, no video. Phones get a plain scrolling version.
+- A folder, not one file, because the page reads `script.md` when it opens (same as episode 1).
+
+**Later the same day (built and tested)**
+- The page is complete: cover, why, three kinds of band, 15 band pages, what comes next, and a table of all 20 bands with glossary, notes and credits. All 12 illustrations are in `images/`.
+- One polish round after Claude reviewed it in the browser: "parts of a region" is now a dashed outline instead of a filled area, images show clearly behind glass text panels, timeline labels no longer overlap, Thai text sizes raised.
+- A separate fact-check of every English sentence against the report: all numbers matched; 4 wording errors and about 10 small overstatements were corrected in `script.md` (English and Thai).
+- Tested in the built-in browser: every view in Thai and English at laptop sizes, scroll and arrow keys (one step each), direct links, the phone layout once. No errors. Not tested: a real touch screen, and the reduced-motion setting (code read only).
+
+**State now:** working locally at http://localhost:8765/spectrum-harmonization/ (English: add `?lang=en`). About 2.5 MB, 43 files. Nothing committed or published.
+**Next action:** A. reviews the page and the image look, and proofreads the Thai in `script.md`. Then decide on publishing and on a link from the home page.
+**Waiting on / open questions:** add `references/` to `.gitignore` before any commit (36 MB of someone else's video, public repository); the status-badge line for `settings.json` must be pasted by A. (the app blocked Claude from editing it); ITU region boundaries were taken from mirrors of the ITU text, not the official document.
+**Helper tools:** PyMuPDF and ffmpeg were installed only in a temporary folder, which may be cleared on reboot.
+
 ## 16 October 2026 (STATUS.md now in the repository)
 
 - A. wants to read the progress log from other computers, so STATUS.md is now committed to the public `amnist-o/digest` repository.
