@@ -7,16 +7,16 @@
 
   var CSS = [
     '.sm-root{--sm-c:var(--mid,#ff6b57);--sm-ink:var(--text,#f4efe9);--sm-mute:var(--muted,#b3aca3);--sm-hair:var(--hair,rgba(255,255,255,.10));',
-    ' --sm-ease:cubic-bezier(.16,1,.3,1);--sm-mono:var(--font-mono,"JetBrains Mono",ui-monospace,monospace);display:flex;flex-direction:column;gap:10px;width:100%;height:100%;min-height:0;color:var(--sm-ink);font:13px/1.4 var(--font-body,"IBM Plex Sans","IBM Plex Sans Thai",system-ui,sans-serif);position:relative}',
+    ' --sm-ease:cubic-bezier(.16,1,.3,1);--sm-mono:var(--font-mono,"JetBrains Mono",ui-monospace,monospace);display:flex;flex-direction:column;gap:10px;width:100%;height:100%;min-height:0;box-sizing:border-box;padding-top:clamp(12px,calc(17vh - 100px),90px);color:var(--sm-ink);font:13px/1.4 var(--font-body,"IBM Plex Sans","IBM Plex Sans Thai",system-ui,sans-serif);position:relative}',
     '.sm-root[data-group=low]{--sm-c:var(--low,#f2a65a)}.sm-root[data-group=mid]{--sm-c:var(--mid,#ff6b57)}.sm-root[data-group=high]{--sm-c:var(--high,#ff5d8f)}',
     /* the map keeps one place and one size on every page; the panel below takes what is left */
-    '.sm-mapwrap{position:relative;flex:none;aspect-ratio:2/1;width:100%;max-height:min(56%,calc(100% - 354px));border:1px solid var(--sm-hair);border-radius:8px;overflow:hidden;',
-    ' background:rgba(7,11,16,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}',
+    /* no card behind the map: the whole globe sits straight on the picture, and takes the larger share of the column */
+    '.sm-mapwrap{position:relative;flex:none;aspect-ratio:2/1;width:100%;max-height:calc(100% - 200px);overflow:visible;background:none;border:0}',
     '.sm-svg{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible}',
     /* The ocean is open: the picture behind shows through; only a faint rim and graticule */
     '.sm-sphere{fill:none;stroke:rgba(255,255,255,.16);stroke-width:.7}',
     '.sm-grat{fill:none;stroke:rgba(255,255,255,.09);stroke-width:.5}',
-    '.sm-land path{fill:#1c2530;stroke:rgba(255,255,255,.3);stroke-width:.4;stroke-linejoin:round;pointer-events:none;transition:fill 1s var(--sm-ease)}',
+    '.sm-land path{fill:rgba(28,37,48,.75);stroke:rgba(255,255,255,.3);stroke-width:.4;stroke-linejoin:round;pointer-events:none;transition:fill 1s var(--sm-ease)}',
     '.sm-l path{pointer-events:none;stroke:none;opacity:0;transition:opacity .7s var(--sm-ease),filter .7s var(--sm-ease)}',
     '.sm-l path.on{pointer-events:visiblePainted}',
     /* identified or harmonised: flat tint (+ thin outline when it is a whole ITU Region) */
@@ -26,6 +26,14 @@
     /* assigned or planned: diagonal hatch */
     '.sm-hatch path.on{opacity:1}',
     '.sm-hl-line{stroke:var(--sm-c);stroke-width:1.5;stroke-opacity:.95}',
+    /* bands with map groups: one flat fill per group (colours are --map-g1.. in css/style.css) */
+    '.sm-grp path{fill:#888}.sm-grp path.on{opacity:.9;stroke:rgba(7,11,16,.55);stroke-width:.5}.sm-root.has-hot .sm-grp path.hot{opacity:1}',
+    '.sm-grp path[data-g=g1]{fill:var(--map-g1,#f2a65a)}.sm-grp path[data-g=g2]{fill:var(--map-g2,#ff5d8f)}',
+    '.sm-grp path[data-g=g3]{fill:var(--map-g3,#f4efe9)}.sm-grp path[data-g=g4]{fill:var(--map-g4,#b54e42)}',
+    '.sm-part path[data-g=g1]{stroke:var(--map-g1,#f2a65a)}.sm-part path[data-g=g2]{stroke:var(--map-g2,#ff5d8f)}',
+    '.sm-part path[data-g=g3]{stroke:var(--map-g3,#f4efe9)}.sm-part path[data-g=g4]{stroke:var(--map-g4,#b54e42)}',
+    /* labels on a grouped map: one light colour with the dark halo, readable on every group colour */
+    '.sm-root.grouped .sm-lab.k-itu text,.sm-root.grouped .sm-lab.k-area text{fill:var(--sm-ink);opacity:1}.sm-root.grouped .sm-lab circle{fill:var(--sm-ink)}.sm-root.grouped .sm-lab text{stroke:rgba(7,11,16,.95);stroke-width:4.5px}',
     /* in use: solid bright fill */
     '.sm-solid path{fill:var(--sm-c)}.sm-solid path.on{opacity:.95;stroke:rgba(7,11,16,.55);stroke-width:.5}',
     /* "parts of" / "some countries in": dashed outline only (the mask hides inner borders and the inner half of the stroke) */
@@ -45,7 +53,8 @@
     ' font:400 clamp(15px,1.3vw,20px)/1.3 var(--font-display,"Instrument Serif",Georgia,serif);color:var(--sm-ink);text-shadow:0 0 14px #070b10,0 0 4px #070b10,0 0 2px #070b10}',
     '.sm-cap.on{opacity:1}',
     /* Legend, list and timeline sit on one glass panel so their small text stays legible over the picture */
-    '.sm-info{flex:1 1 auto;min-height:0;overflow-y:auto;scrollbar-width:thin;display:flex;flex-direction:column;gap:6px;padding:10px 16px 8px;border:1px solid var(--sm-hair);border-radius:8px;',
+    /* the panel under the map is only as tall as what it holds (it scrolls if a page has more) */
+    '.sm-info{flex:0 1 auto;min-height:0;overflow-y:auto;scrollbar-width:thin;display:flex;flex-direction:column;gap:6px;padding:10px 16px 8px;border:1px solid var(--sm-hair);border-radius:8px;',
     ' background:var(--glass,rgba(9,13,18,.74));-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}',
     '.sm-info>.sm-h{display:none}.sm-hd[hidden]{display:none}.sm-hd{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0}',
     '.sm-h{font:500 11px/1.2 var(--sm-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--sm-mute)}',
@@ -59,6 +68,11 @@
     '.sm-sw-plan{background:repeating-linear-gradient(135deg,var(--sm-c) 0 1.5px,transparent 1.5px 4.5px)}',
     '.sm-sw-use{background:var(--sm-c)}',
     '.sm-sw-partial{background:none;border:1.5px dashed var(--sm-c)}',
+    '.sm-sw-g1{background:var(--map-g1,#f2a65a)}.sm-sw-g2{background:var(--map-g2,#ff5d8f)}.sm-sw-g3{background:var(--map-g3,#f4efe9)}.sm-sw-g4{background:var(--map-g4,#b54e42)}',
+    '.sm-sw-dash{background:none}.sm-sw-dash.sm-sw-g1{border:1.5px dashed var(--map-g1,#f2a65a)}.sm-sw-dash.sm-sw-g2{border:1.5px dashed var(--map-g2,#ff5d8f)}',
+    '.sm-sw-dash.sm-sw-g3{border:1.5px dashed var(--map-g3,#f4efe9)}.sm-sw-dash.sm-sw-g4{border:1.5px dashed var(--map-g4,#b54e42)}',
+    '.sm-sw-none{background:none;position:relative}.sm-sw-none::after{content:"";position:absolute;left:50%;top:50%;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:var(--sm-mute)}',
+    '.sm-legend[hidden],.sm-note[hidden],.sm-where[hidden]{display:none}',
     '.sm-sw+.sm-sw{margin-left:-5px}',
     '.sm-where{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px}',
     '.sm-where li{display:flex;gap:9px;align-items:flex-start;padding:2px 6px;margin:0 -6px;border-radius:4px;font-size:13px;line-height:1.4;cursor:default;transition:background .3s var(--sm-ease)}',
@@ -140,6 +154,7 @@
     var gTint = el('g', { 'class': 'sm-l sm-tint' }, gAria);
     var gHatch = el('g', { 'class': 'sm-l sm-hatch' }, gAria);
     var gSolid = el('g', { 'class': 'sm-l sm-solid' }, gAria);
+    var gGrp = el('g', { 'class': 'sm-l sm-grp' }, gAria);
     var gOut = el('g', { 'class': 'sm-out' }, gAria);
     var gPart = el('g', { 'class': 'sm-part', mask: 'url(#' + id + '-pm)' }, gAria);
     var gLab = el('g', { 'class': 'sm-labels' }, gAria);
@@ -167,8 +182,8 @@
     // ---- geometry layers
     var feats = world.features;
     var byA3 = {};
-    var layers = { tint: [], hatch: [], solid: [], part: [], pm: [], land: [] };
-    var HL = ['tint', 'hatch', 'solid', 'part', 'pm'];       // layers that light up
+    var layers = { tint: [], hatch: [], solid: [], grp: [], part: [], pm: [], land: [] };
+    var HL = ['tint', 'hatch', 'solid', 'grp', 'part', 'pm'];       // layers that light up
     feats.forEach(function (f, i) {
       var a = f.properties.a3;
       (byA3[a] = byA3[a] || []).push(i);
@@ -176,9 +191,10 @@
       layers.tint.push(el('path', null, gTint));
       layers.hatch.push(el('path', { fill: 'url(#' + id + '-h)' }, gHatch));
       layers.solid.push(el('path', null, gSolid));
+      layers.grp.push(el('path', null, gGrp));
       layers.part.push(el('path', null, gPart));
       layers.pm.push(el('path', null, mask));
-      [layers.tint, layers.hatch, layers.solid, layers.part].forEach(function (L) {
+      [layers.tint, layers.hatch, layers.solid, layers.grp, layers.part].forEach(function (L) {
         L[i].dataset.a3 = a;
       });
     });
@@ -215,6 +231,7 @@
     var entries = [];        // current where entries with resolved data
     var lit = {};            // a3 -> true
     var litPlaces = {};
+    var winnerA3 = {};       // grouped bands: a3 -> index of the entry that colours that country (the most specific one)
     var graticule = d3.geoGraticule().step([30, 30]);
 
     function placeA3(keys) {
@@ -407,9 +424,16 @@
         }
       });
       return groups.map(function (g) {
-        var bits = [g.s];
+        var s = g.s, tail = '';
+        if (g.bands.length) {
+          // Thai labels say "ย่านนี้" (this band): on a page with several bands, name the band inside the sentence,
+          // e.g. "ทั่วโลกระบุให้ย่าน 26 GHz ใช้งาน IMT"; other labels get the band name after a dot
+          if (s.indexOf('ย่านนี้') >= 0) s = s.replace('ย่านนี้', 'ย่าน ' + g.bands.join(' และ ') + ' ').replace(/\s+/g, ' ').trim();
+          else tail = g.bands.join(', ');
+        }
+        var bits = [s];
         if (g.itu && g.itu.length) bits.push('R' + g.itu.join('·R'));
-        if (g.bands.length) bits.push(g.bands.join(', '));
+        if (tail) bits.push(tail);
         return bits.join(' · ');
       });
     }
@@ -422,6 +446,8 @@
     // ---- show
     function clearState() {
       HL.forEach(function (k) { layers[k].forEach(function (p) { p.classList.remove('on', 'hot'); }); });
+      layers.grp.forEach(function (p) { p.removeAttribute('data-g'); });
+      layers.part.forEach(function (p) { p.removeAttribute('data-g'); });
       [1, 2, 3].forEach(function (n) { outEls[n].classList.remove('on', 'hot'); });
       Object.keys(labels).forEach(function (k) { labels[k].g.classList.remove('on', 'hot'); });
     }
@@ -433,6 +459,7 @@
     var LAYER = { use: 'solid', plan: 'hatch', identified: 'tint' };
     function mark(e, cls, whole) {
       if (e.level === 'global') return;
+      if (e.group) { markGroup(e, cls, whole); return; }
       e.places.forEach(function (k) {
         if (!places[k]) return;
         var part = isPartial(e, k);
@@ -442,6 +469,43 @@
         });
         var m = /^itu([123])$/.exec(k);
         if (m && !part && e.status === 'identified') outEls[m[1]].classList.add(cls);
+        labels[k].g.classList.add(cls);
+      });
+    }
+
+    // Grouped band: the group's fill goes on the countries this entry wins (overlaps go to the more specific place)
+    var RANK = { country: 3, area: 2, itu: 1 };
+    function pickWinners() {
+      winnerA3 = {};
+      entries.forEach(function (e, i) {
+        if (!e.group || e.level === 'global') return;
+        e.places.forEach(function (k) {
+          if (!places[k] || isPartial(e, k)) return;
+          places[k].a3.forEach(function (a) {
+            var w = winnerA3[a];
+            if (w == null || (RANK[e.level] || 0) >= (RANK[entries[w].level] || 0)) winnerA3[a] = i;
+          });
+        });
+      });
+    }
+    function markGroup(e, cls, whole) {
+      var i = entries.indexOf(e);
+      e.places.forEach(function (k) {
+        if (!places[k]) return;
+        var part = isPartial(e, k);
+        // "only some countries": dashed outline in the group colour (only on hover where another entry names the place in full)
+        var L = part ? (cls === 'on' && whole && whole[k] ? ['pm'] : ['part', 'pm']) : null;
+        places[k].a3.forEach(function (a) {
+          (byA3[a] || []).forEach(function (j) {
+            if (part) {
+              L.forEach(function (n) { if (n !== 'pm' || cls === 'on') layers[n][j].classList.add(cls); });
+              if (L[0] === 'part') layers.part[j].setAttribute('data-g', e.group);
+            } else if (winnerA3[a] === i) {
+              layers.grp[j].classList.add(cls);
+              layers.grp[j].setAttribute('data-g', e.group);
+            }
+          });
+        });
         labels[k].g.classList.add(cls);
       });
     }
@@ -466,18 +530,24 @@
       clearState();
       root.classList.remove('has-hot');
       ul.textContent = '';
+      var groups = page.mapGroups && page.mapGroups.length ? page.mapGroups : null;   // optional: colour this band's map by group
+      // a page is "grouped" when it has map groups, a world caption or a world tint (caption-only pages have no groups and no list)
+      var grouped = !!groups || !!page.worldCaption || !!page.worldTint;
+      root.classList.toggle('grouped', grouped);
       entries = (page.where || []).map(function (w) {
-        return { id: w.id, level: w.level, status: w.status || 'identified', places: w.places || [], partial: w.partial, partial_places: w.partial_places,
+        return { id: w.id, level: w.level, status: w.status || 'identified', group: groups && groups.indexOf(w.group) >= 0 ? w.group : null, places: w.places || [], partial: w.partial, partial_places: w.partial_places,
           text: T('where.' + page.id + '.' + w.id) || w.en || '' };
       });
 
+      pickWinners();
       var isGlobal = false, names = [], whole = {};
       entries.forEach(function (e) { e.places.forEach(function (k) { if (e.level !== 'global' && !isPartial(e, k)) whole[k] = 1; }); });
       entries.forEach(function (e, i) {
         var li = html('li', '', ul);
         li.tabIndex = 0;
-        var parts = e.places.filter(function (k) { return isPartial(e, k); }).length;
-        if (parts < e.places.length || e.level === 'global') html('i', 'sm-sw sm-sw-' + e.status, li);
+        var parts = e.group ? 0 : e.places.filter(function (k) { return isPartial(e, k); }).length;
+        if (e.group) html('i', 'sm-sw sm-sw-' + (e.places.length ? e.group : 'none') + (e.places.length && e.places.every(function (k) { return isPartial(e, k); }) ? ' sm-sw-dash' : ''), li);   // dashed swatch = only some countries
+        else if (parts < e.places.length || e.level === 'global') html('i', 'sm-sw sm-sw-' + e.status, li);
         if (parts) html('i', 'sm-sw sm-sw-partial', li);
         html('span', '', li).textContent = e.text;
         li.addEventListener('mouseenter', function () { setHot(i); });
@@ -491,14 +561,22 @@
       if (isGlobal) layers.tint.forEach(function (p) { p.classList.add('on'); });   // identified worldwide: every land area tinted
       // "harmonised in some countries, none named" (e.g. 50 GHz): a last, muted row without a swatch
       var noneText = T('where.' + page.id + '.none');
-      if (noneText && entries.length) html('li', 'sm-none', ul).textContent = noneText;
+      if (noneText && entries.length && !grouped) html('li', 'sm-none', ul).textContent = noneText;   // grouped pages: the list lines are the whole story
       var none = !entries.length;
-      note.textContent = T('ui.legend.note');
+      note.textContent = grouped ? '' : T('ui.legend.note');
+      note.hidden = grouped;
       var capText = isGlobal ? T('ui.legend.global') : none ? noneText : '';
+      if (grouped && (page.worldCaption || page.worldTint)) {      // world caption and/or tint: all land outside the groups gets the faint "identified" tint
+        capText = page.worldCaption ? T(page.worldCaption) : '';
+        layers.tint.forEach(function (p) { if (!winnerA3[p.dataset.a3]) p.classList.add('on'); });
+      }
       cap.textContent = capText;
       cap.classList.toggle('on', !!capText);
 
       // legend
+      legend.hidden = grouped;                        // grouped bands: the coloured list lines act as the legend; no status legend
+      if (grouped) hWhere.textContent = T('map.' + page.id + '.title') || T('ui.where');
+      hd.hidden = ul.hidden = grouped && !entries.length;   // caption-only page: no list and no list heading
       var legKey = { use: 'ui.legend.use', plan: 'ui.legend.plan', identified: 'ui.legend.identified', partial: 'ui.legend.partial' };
       Object.keys(legItems).forEach(function (k) {
         var s = legItems[k];
@@ -533,11 +611,17 @@
     function mapOver(ev) {
       var a = ev.target && ev.target.dataset && ev.target.dataset.a3;
       if (!a) return;
+      if (ev.target.parentNode === gPart) {
+        for (var q = 0; q < entries.length; q++) {
+          if (entries[q].group && entries[q].level !== 'global' && entries[q].places.some(function (k) { return isPartial(entries[q], k) && places[k] && places[k].a3.indexOf(a) >= 0; })) { setHot(q); return; }
+        }
+      }
+      if (winnerA3[a] != null) { setHot(winnerA3[a]); return; }
       for (var i = 0; i < entries.length; i++) {
         if (entries[i].level !== 'global' && placeA3(entries[i].places)[a]) { setHot(i); return; }
       }
     }
-    [gTint, gHatch, gSolid, gPart].forEach(function (g) {
+    [gTint, gHatch, gSolid, gGrp, gPart].forEach(function (g) {
       g.addEventListener('pointerover', mapOver);
       g.addEventListener('pointerleave', function () { setHot(null); });
     });

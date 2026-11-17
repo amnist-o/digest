@@ -108,17 +108,21 @@ function buildBandPages() {
 // Plain "where" list and conference list: always present, replaced by the map when js/map.js works
 function geoFallback(page) {
   const box = el('div', { class: 'geo-plain' });
-  box.append(el('h3', { 'data-k': 'ui.where' }));
+  const captionOnly = page.worldCaption && !(page.where && page.where.length);    // e.g. "identified worldwide": one sentence, no list
+  if (captionOnly) box.append(el('p', { class: 'where-none', 'data-k': page.worldCaption }));
+  else box.append(el('h3', { 'data-k': 'ui.where' }));
   if (page.where && page.where.length) {
     box.append(el('ul', { class: 'where-plain' }, ...page.where.map(w => {
       const parts = (w.places || []).filter(k => w.partial === true || (w.partial_places || []).includes(k)).length;
+      const grouped = page.mapGroups && page.mapGroups.includes(w.group);          // this band's map is coloured by group, not by status
       return el('li', { 'data-level': w.level },
-        parts < (w.places || []).length || w.level === 'global' ? el('i', { class: 'sw sw-' + (w.status || 'identified'), 'aria-hidden': 'true' }) : null,
-        parts ? el('i', { class: 'sw sw-partial', 'aria-hidden': 'true' }) : null,
+        grouped ? el('i', { class: 'sw sw-' + ((w.places || []).length ? w.group : 'none') + (parts && parts === (w.places || []).length ? ' sw-dash' : ''), 'aria-hidden': 'true' })
+          : parts < (w.places || []).length || w.level === 'global' ? el('i', { class: 'sw sw-' + (w.status || 'identified'), 'aria-hidden': 'true' }) : null,
+        !grouped && parts ? el('i', { class: 'sw sw-partial', 'aria-hidden': 'true' }) : null,
         el('span', { 'data-k': `where.${page.id}.${w.id}` }));
     })));
   }
-  if (!(page.where && page.where.length) || blocks[`where.${page.id}.none`]) box.append(el('p', { class: 'where-none', 'data-k': `where.${page.id}.none` }));
+  if (!captionOnly && (!(page.where && page.where.length) || blocks[`where.${page.id}.none`])) box.append(el('p', { class: 'where-none', 'data-k': `where.${page.id}.none` }));
   box.append(el('h3', { 'data-k': 'ui.when' }));
   const evs = data.events.slice().sort((a, b) => a.year - b.year);
   box.append(el('ol', { class: 'when-plain' }, ...evs.map(e => {
@@ -131,20 +135,48 @@ function geoFallback(page) {
   return box;
 }
 
+// 3GPP band codes (b28, n77, n257, n/b20 ...) stay in bands.json and show only in the table on the last page; band pages never print them.
+const isCode = s => /^(?:[bn]\d{1,3}(?:\/\d{1,3})?|n\/b\d{1,3}|band\s*\d+)$/i.test(String(s).trim());
+const noCodes = s => s && String(s).split(/\s*,\s*/).every(isCode) ? '' : (s || '');
+// A card's diagram rows without codes: rows that become identical show once; with several rows, each is named by its duplex type (FDD/TDD/SDL) or, if those match, by its frequency range
+function cardRows(b, ghz) {
+  const sig = p => p.blocks.map(k => [k.from, k.to, String(k.kind).toLowerCase()].join(':')).join('|');
+  const seen = new Set(), rows = [];
+  b.plans.forEach(p => {
+    if (seen.has(sig(p))) return;
+    seen.add(sig(p));
+    rows.push({ blocks: p.blocks.map(k => Object.assign({}, k, { label: noCodes(k.label) || null })), label: '' });
+  });
+  if (rows.length > 1) {
+    const duplex = r => {
+      const kinds = new Set(r.blocks.map(k => String(k.kind).toLowerCase())), out = [];
+      if (kinds.has('uplink') || kinds.has('downlink')) out.push('FDD');
+      if (kinds.has('tdd')) out.push('TDD');
+      if (kinds.has('sdl')) out.push('SDL');
+      return out.join(' + ');
+    };
+    const span = r => freqLabel(Math.min(...r.blocks.map(k => k.from)), ghz) + '–' + freqLabel(Math.max(...r.blocks.map(k => k.to)), ghz);
+    const names = rows.map(duplex);
+    const distinct = a => new Set(a).size === a.length && a.every(Boolean);
+    rows.forEach((r, i) => { r.label = distinct(names) ? names[i] : span(r); });
+  }
+  return rows;
+}
+
 function bandCard(b) {
   const ghz = b.max_mhz >= 10000;
   const all = b.plans.flatMap(p => p.blocks);
   const lo = Math.min(...all.map(k => k.from)), hi = Math.max(...all.map(k => k.to));
   const centre = (b.min_mhz + b.max_mhz) / 2;
-  const chips = el('ul', { class: 'chips', 'aria-label': '3GPP' },
-    ...b.gpp.map(x => el('li', { class: 'chip' }, x)),
+  const chips = el('ul', { class: 'chips' },
     ...(b.gens || []).map(x => el('li', { class: 'chip gen' }, x)),
     ...(b.gens_future || []).map(x => el('li', { class: 'chip gen fut' }, x)));
   // wavelength: calculated (speed of light ÷ centre frequency), so it is a small chip with its own note, not a figure
   const wl = el('span', { class: 'chip wl', 'data-k-title': 'ui.derived' }, el('span', { class: 'sr-only', 'data-k': 'ui.wavelength' }), 'λ ≈ ' + wavelength(centre),
     el('sup', { 'aria-hidden': 'true' }, '*'), el('span', { class: 'sr-only' }, ' (', el('span', { 'data-k': 'ui.derived' }), ')'));
-  const labelled = b.plans.some(p => p.label);                   // all rows share one scale, so all get the label column
-  const plans = el('div', { class: 'plans' + (labelled ? ' labelled' : '') }, ...b.plans.map(p => planDiagram(p, lo, hi, ghz, labelled)));
+  const rows = cardRows(b, ghz);
+  const labelled = rows.length > 1;                              // all rows share one scale, so all get the label column
+  const plans = el('div', { class: 'plans' + (labelled ? ' labelled' : '') }, ...rows.map(p => planDiagram(p, lo, hi, ghz, labelled)));
   return el('article', { class: 'bcard rv' },
     el('header', null, el('h3', null, b.name), wl, el('p', { class: 'range' }, b.range_lines.join(' · '))),
     chips, plans,
@@ -154,12 +186,15 @@ function bandCard(b) {
 }
 
 // A figure from the report, with its qualifier word ("over", "around"); never a big "0"
+// Thai classifier after a device count (ui.deviceUnit); empty in English and when the block is missing
+const deviceUnit = () => el('span', { class: 'unit', 'data-k': 'ui.deviceUnit', 'data-th-only': '1' });
 function figure(labelKey, f, emptyKey) {
   const dd = el('dd');
+  const isDev = labelKey === 'ui.devices';
   f = f || {};
   const q = f.qualifier ? el('span', { class: 'q', 'data-k': qKey(f.qualifier), 'data-q': f.qualifier }) : null;
   if (f.count) {
-    dd.append(q || '', el('b', null, fmt(f.count)));
+    dd.append(q || '', el('span', { class: 'nu' }, el('b', null, fmt(f.count)), isDev ? deviceUnit() : ''));   // number and classifier stay together
   } else if (f.count === 0 || !(f.alt && f.alt.length)) {
     dd.classList.add('none');
     dd.append(el('span', { 'data-k': f.count === 0 ? emptyKey : 'ui.noFigure' }));
@@ -170,9 +205,11 @@ function figure(labelKey, f, emptyKey) {
     small.push(el('span', null, g + ' ', s.qualifier ? el('span', { 'data-k': qKey(s.qualifier), 'data-q': s.qualifier }) : '', ' ' + fmt(s.count)));
   }
   (f.alt || []).forEach(a => {
-    const what = a.year ? String(a.year) : String(a.range || '').replace(/\s*\(.*\)/, '');   // the diagram already shows the edges
+    // a year, or the frequency range inside the brackets ("n257 (26.5-29.5 GHz, ...)" -> "26.5–29.5 GHz"); never the band code
+    const inner = /\(([^),]*)/.exec(String(a.range || ''));
+    const what = a.year ? String(a.year) : inner ? inner[1].trim().replace(/-/g, '–') : String(a.range || '').split(/\s+/).filter(w => !isCode(w)).join(' ');
     if (f.count && a.count === f.count && a.year) return;          // same as the main figure
-    small.push(el('span', null, what + ': ', a.qualifier ? el('span', { 'data-k': qKey(a.qualifier), 'data-q': a.qualifier }) : '', ' ' + fmt(a.count)));
+    small.push(el('span', null, what + ': ', a.qualifier ? el('span', { 'data-k': qKey(a.qualifier), 'data-q': a.qualifier }) : '', ' ' + fmt(a.count), isDev ? deviceUnit() : ''));
   });
   if (small.length) {
     const s = el('small', { class: 'alt' });
@@ -182,7 +219,8 @@ function figure(labelKey, f, emptyKey) {
   return el('div', { class: 'fig' }, el('dt', { 'data-k': labelKey }), dd);
 }
 
-// Band-plan diagram at true proportions. Positions are in %, so text stays crisp at any width.
+// Band-plan diagram at true proportions, except a very wide empty gap, which is drawn shortened and marked
+// "not to scale" (or ≈). Positions are in %, so text stays crisp at any width.
 const KIND = { uplink: ['↑', 'ui.uplink'], downlink: ['↓', 'ui.downlink'], tdd: ['⇅', 'ui.tdd'], sdl: ['↓', 'ui.sdl'], unknown: ['', ''] };
 // Words inside a block, longest first; fitPlanTexts() keeps the longest that fits the block on screen
 function blockOptions(arrow, key, label, planLabel) {
@@ -193,30 +231,51 @@ function blockOptions(arrow, key, label, planLabel) {
   return [...new Set([dup ? j([arrow, kindWord]) : j([arrow, kindWord, label]), j([arrow, label]), j([arrow, kindWord]), arrow, ''])];
 }
 const blockWords = (arrow, key, w, label, planLabel) => blockOptions(arrow, key, label, planLabel)[0];
-// Edge frequencies: measured, so close ones drop to a second row and never print over each other
+// Edge frequencies: all on one line. Each number sits centred under its tick; numbers that would touch are
+// nudged sideways just enough to clear each other (the ticks stay exact). Only if the whole row cannot fit
+// are that diagram's numbers made a little smaller.
 function fitEdges(svg) {
-  const last = [-1e9, -1e9];
-  let two = false;
-  $$('text.edge-t', svg).forEach(tx => {
-    const tick = tx.previousElementSibling;
-    let bb;
-    try { bb = tx.getBBox(); } catch (e) { return; }
-    if (!bb.width) return;
-    const row = bb.x >= last[0] + 5 ? 0 : bb.x >= last[1] + 5 ? 1 : -1;
-    tx.style.display = tick.style.display = row < 0 ? 'none' : '';
-    if (row < 0) return;
-    last[row] = bb.x + bb.width;
-    if (row) two = true;
-    tx.setAttribute('y', row ? 46 : 36);
-    tick.setAttribute('y2', row ? 37 : 28);
-  });
-  svg.setAttribute('height', two ? 48 : 38);
+  const txs = $$('text.edge-t', svg);
+  if (!txs.length) return;
+  const W = svg.getBoundingClientRect().width;
+  if (!W) return;                                                 // not laid out yet
+  const GAP = 5;
+  const place = () => {
+    const c = [], w = [];
+    txs.forEach(tx => {
+      tx.setAttribute('text-anchor', 'start');
+      try { c.push(tx.previousElementSibling.getBBox().x); w.push(tx.getBBox().width); } catch (e) { c.push(0); w.push(0); }
+    });
+    const n = txs.length, p = c.map((x, i) => Math.min(Math.max(x - w[i] / 2, 0), W - w[i]));
+    for (let i = 1; i < n; i++) p[i] = Math.max(p[i], p[i - 1] + w[i - 1] + GAP);
+    p[n - 1] = Math.min(p[n - 1], W - w[n - 1]);
+    for (let i = n - 2; i >= 0; i--) p[i] = Math.min(p[i], p[i + 1] - GAP - w[i]);
+    p[0] = Math.max(p[0], 0);
+    txs.forEach((tx, i) => tx.setAttribute('x', p[i]));
+    return w.reduce((s, x) => s + x, 0) + GAP * (n - 1) <= W && p[0] >= 0;
+  };
+  txs.forEach(tx => { tx.style.fontSize = ''; });
+  let size = parseFloat(getComputedStyle(txs[0]).fontSize) || 11;
+  while (!place() && size > 8) { size -= .5; txs.forEach(tx => { tx.style.fontSize = size + 'px'; }); }
+  svg.setAttribute('height', 38);
 }
 function fitPlanTexts(root) {
-  $$('.plan-svg', root).forEach(svg => { $$('text.edge-t', svg).forEach(tx => { tx.style.display = tx.previousElementSibling.style.display = ''; }); fitEdges(svg); });
-  $$('.plan-svg text.gap-t', root).forEach(tx => {                // "gap" label only where the gap is wide enough
-    tx.textContent = t('ui.gap');
-    try { if (tx.getComputedTextLength() > tx.previousElementSibling.getBBox().width - 8) tx.textContent = ''; } catch (e) { /* not laid out */ }
+  $$('.plan-svg', root).forEach(svg => fitEdges(svg));
+  $$('.plan-svg text.gap-t', root).forEach(tx => {                // "gap" label: one line, or two lines if the gap is narrow; none if it still does not fit
+    const short = tx.classList.contains('short');
+    const words = t(short ? 'ui.gapShort' : 'ui.gap'), x = tx.getAttribute('x');
+    let room;
+    try { room = tx.previousElementSibling.getBBox().width - 8; } catch (e) { return; }
+    tx.textContent = words; tx.setAttribute('y', 17);
+    const giveUp = () => { tx.textContent = short ? '≈' : ''; tx.setAttribute('y', 17); };   // a shortened gap keeps its mark even when no words fit
+    if (tx.getComputedTextLength() <= room) return;
+    const sp = words.split(' ');                                   // split where the two lines come out most even in length
+    let mid = 1, best = 1e9;
+    for (let i = 1; i < sp.length; i++) { const d = Math.max(sp.slice(0, i).join(' ').length, sp.slice(i).join(' ').length); if (d < best) { best = d; mid = i; } }
+    const lines = sp.length > 1 ? [sp.slice(0, mid).join(' '), sp.slice(mid).join(' ')] : [words];
+    tx.textContent = '';
+    lines.forEach((s, i) => { const ts = sv('tspan', { x, y: lines.length > 1 ? (i ? 22 : 10) : 17 }, tx); ts.textContent = s; });
+    if ([...tx.children].some(ts => ts.getComputedTextLength() > room)) giveUp();
   });
   $$('.plan-svg text.blk-t', root).forEach(tx => {
     const rect = tx.previousElementSibling;
@@ -232,8 +291,26 @@ function fitPlanTexts(root) {
 }
 function planDiagram(plan, lo, hi, ghz, labelled) {
   const pad = 3, span = hi - lo || 1;
-  const X = v => pad + (v - lo) / span * (100 - 2 * pad);
   const blocks = plan.blocks.slice().sort((a, b) => a.from - b.from);
+  // A very wide empty gap (e.g. AWS: 1780 to 2110 MHz between uplink and downlink) is drawn shortened, so the
+  // blocks and their frequency numbers get the room; the gap is marked as shortened (dashed, with a label).
+  const BIG = .4, SHARE = .2;                                       // a gap over 40% of the span is drawn at 20% of the width
+  const big = [];
+  blocks.forEach((k, i) => { const nx = blocks[i + 1]; if (nx && nx.from - k.to > BIG * span) big.push([k.to, nx.from]); });
+  const bigLen = big.reduce((s, g) => s + g[1] - g[0], 0);
+  const share = big.length ? SHARE : 0;
+  const unit = (1 - share * big.length) / (span - bigLen);
+  const frac = v => {
+    let f = 0, cur = lo;
+    for (const [a, b] of big) {
+      if (v <= a) break;
+      f += (a - cur) * unit;
+      if (v < b) return f + share * (v - a) / (b - a);
+      f += share; cur = b;
+    }
+    return f + (v - cur) * unit;
+  };
+  const X = v => pad + frac(v) * (100 - 2 * pad);
   const wrap = el('figure', { class: 'plan' });
   if (labelled) wrap.append(el('figcaption', null, plan.label || ''));
   const svg = sv('svg', { class: 'plan-svg', width: '100%', height: 48, role: 'img' });
@@ -251,31 +328,26 @@ function planDiagram(plan, lo, hi, ghz, labelled) {
     if (nx && nx.from > k.to) {                                    // the gap between two blocks stays visibly empty
       const g0 = X(k.to), g1 = X(nx.from);
       sv('line', { x1: g0 + '%', x2: g1 + '%', y1: 13, y2: 13, class: 'plan-gap' }, svg);
-      if (g1 - g0 > 12) { const gt = sv('text', { x: (g0 + g1) / 2 + '%', y: 17, class: 'gap-t', 'text-anchor': 'middle', 'data-kk': 'ui.gap' }, svg); gt.textContent = t('ui.gap'); }
+      const short = big.some(g => g[0] === k.to);                  // drawn shortened: always marked (label, or at least ≈)
+      if (short || g1 - g0 > 12) { const gt = sv('text', { x: (g0 + g1) / 2 + '%', y: 17, class: 'gap-t' + (short ? ' short' : ''), 'text-anchor': 'middle', 'data-kk': short ? 'ui.gapShort' : 'ui.gap' }, svg); gt.textContent = t(short ? 'ui.gapShort' : 'ui.gap'); }
     }
   });
-  // Edge frequencies under the blocks; close ones drop to a second row
+  // Edge frequencies under the blocks, all on one line (fitEdges pushes close ones apart, then shrinks them if needed)
   const edges = [...new Set(blocks.flatMap(k => [k.from, k.to]))].sort((a, b) => a - b);
-  const lastX = [-99, -99];
-  let rows = 1;
   edges.forEach(v => {
     const x = X(v);
-    const row = x - lastX[0] >= 9 ? 0 : x - lastX[1] >= 9 ? 1 : -1;
-    if (row < 0) return;
-    lastX[row] = x;
-    if (row) rows = 2;
-    sv('line', { x1: x + '%', x2: x + '%', y1: 23, y2: row ? 37 : 28, class: 'edge-tick' }, svg);
+    sv('line', { x1: x + '%', x2: x + '%', y1: 23, y2: 28, class: 'edge-tick' }, svg);
     const anchor = x < 6 ? 'start' : x > 94 ? 'end' : 'middle';
-    sv('text', { x: x + '%', y: row ? 46 : 36, class: 'edge-t', 'text-anchor': anchor }, svg).textContent = freqLabel(v, ghz);
+    sv('text', { x: x + '%', y: 36, class: 'edge-t', 'text-anchor': anchor, 'data-anchor': anchor }, svg).textContent = freqLabel(v, ghz);
   });
-  svg.setAttribute('height', rows === 2 ? 48 : 38);
+  svg.setAttribute('height', 38);
   svg.setAttribute('aria-label', (plan.label ? plan.label + ': ' : '') + desc.join(', ') + (ghz ? ' GHz' : ' MHz'));
   wrap.append(svg);
   return wrap;
 }
 function relabelPlans() {                                         // language switch: words inside the diagrams
   $$('.plan-svg text[data-kk]').forEach(tx => {
-    if (tx.classList.contains('gap-t')) { tx.textContent = t('ui.gap'); return; }
+    if (tx.classList.contains('gap-t')) { tx.textContent = t(tx.classList.contains('short') ? 'ui.gapShort' : 'ui.gap'); return; }
     const d = tx.dataset;
     tx.textContent = blockWords(d.arrow, d.kk, +d.w, d.lab, d.pl);
   });
@@ -299,18 +371,22 @@ function buildAlign() {
 }
 
 // ---------- Stats, kinds, index ----------
-const STAT_KEYS = ['uniqueSubscribers', 'gdpContribution', 'fiveGShare2030', 'upper6Population'];   // matches why.stat1..4.label
+// Six figures in two groups of three: slots 1-3 (people, money, 5G) and slots 4-6 (the three population shares).
+// Each slot n reads why.statN.label and why.statN.value; why.statN.key names the figure in bands.json "stats" (default below).
+const STAT_KEYS = ['uniqueSubscribers', 'gdpContribution', 'fiveGShare2030', 'popConnected', 'popUsageGap', 'popCoverageGap'];
 function renderStats() {
-  const dl = $('#stats');
-  dl.replaceChildren();
+  const box = $('#stats');
+  box.replaceChildren();
+  const sets = [el('dl', { class: 'stat-set' }), el('dl', { class: 'stat-set shares' })];
   STAT_KEYS.forEach((def, i) => {
     const n = i + 1;
     const key = has(`why.stat${n}.key`) ? t(`why.stat${n}.key`).trim() : def;       // the script may pick another figure
     const s = data.stats && data.stats[key];
     if (!s) return;
     const value = has(`why.stat${n}.value`) ? t(`why.stat${n}.value`) : s.value;   // the script may word the value (e.g. in Thai)
-    dl.append(el('div', { class: 'stat rv', style: `--i:${5 + i}` }, el('dd', null, value), el('dt', null, t(`why.stat${n}.label`))));
+    sets[i < 3 ? 0 : 1].append(el('div', { class: 'stat rv', style: `--i:${5 + i}` }, el('dd', null, value), el('dt', null, t(`why.stat${n}.label`))));
   });
+  sets.forEach(d => { if (d.children.length) box.append(d); });
 }
 
 function buildKinds() {
@@ -331,15 +407,21 @@ function buildKinds() {
 
 function buildIndex() {
   const rows = $('#band-rows');
-  data.bands.forEach(b => {
+  // rows follow the order of the band pages (a band no page shows goes last)
+  const ordered = data.pages.flatMap(p => p.bands).map(id => data.bands.find(b => b.id === id)).filter(Boolean);
+  data.bands.forEach(b => { if (!ordered.includes(b)) ordered.push(b); });
+  ordered.forEach(b => {
     const page = data.pages.find(p => p.bands.includes(b.id));
     const evs = page ? page.events.filter(e => !e.band || e.band === b.id) : [];
-    const evIds = [...new Set(evs.map(e => e.event))];
-    const fig = (f, emptyKey) => {
+    const evIds = b.index_events || [...new Set(evs.map(e => e.event))];     // index_events: this table only, where the page timeline names the other band of a shared page
+    const q = x => x.qualifier ? el('span', { class: 'q', 'data-k': qKey(x.qualifier), 'data-q': x.qualifier }) : '';
+    const fig = (f, emptyKey, unit) => {
       const td = el('td', { class: 'n' });
-      if (f && f.count) td.append(f.qualifier ? el('span', { class: 'q', 'data-k': qKey(f.qualifier), 'data-q': f.qualifier }) : '', ' ' + fmt(f.count));
-      else if (f && f.alt && f.alt.length) td.append(f.alt.map(a => fmt(a.count)).join(' / '));
-      else td.append(el('span', { class: 'muted', 'data-k': f && f.count === 0 ? emptyKey : 'ui.noFigure' }));
+      if (f && f.count) td.append(q(f), ' ' + fmt(f.count), unit ? deviceUnit() : '');
+      else if (f && f.alt && f.alt.length) {
+        f.alt.forEach((a, i) => td.append(i ? ' / ' : '', q(a), ' ' + fmt(a.count)));
+        if (unit) td.append(deviceUnit());
+      } else td.append(el('span', { class: 'muted', 'data-k': f && f.count === 0 ? emptyKey : 'ui.noFigure' }));
       return td;
     };
     rows.append(el('tr', { 'data-group': b.group },
@@ -347,11 +429,19 @@ function buildIndex() {
       el('td', { class: 'mono' }, b.range_lines.join(' · ')),
       el('td', null, el('span', { 'data-k': `kinds.${b.group}.name` })),
       el('td', { class: 'mono' }, b.gpp.join(', ')),
-      fig(b.networks, 'ui.noNetworks'), fig(b.devices, 'ui.noFigure'),
+      fig(b.networks, 'ui.noNetworks'), fig(b.devices, 'ui.noFigure', true),
       el('td', { class: 'mono' }, ...evIds.map((id, i) => {
         const e = data.events.find(x => x.id === id);
         return el('span', { class: e && e.future ? 'fut' : '' }, (i ? ', ' : ''), el('span', { 'data-k': 'event.' + id }, e ? e.label : id));
       }))));
+  });
+}
+
+// Licensing principles: "Short title: statement" - the title before the first colon is shown bold on its own line
+function renderPrinciples() {
+  $$('.principles ol li').forEach(li => {
+    const m = li.textContent.match(/^([^:：]{1,70}?)\s*[:：]\s*(.+)$/s);
+    if (m) li.replaceChildren(el('b', null, m[1]), m[2]);
   });
 }
 
@@ -361,7 +451,7 @@ function renderLists() {
   gloss.replaceChildren();
   keysWith('gloss.').filter(k => k !== 'gloss.title').forEach(k => {
     const v = t(k);
-    const m = v.match(/^(.{1,14}?)\s*[:：—–]\s+(.+)$/s);          // "ABBR: meaning" or the key's own name
+    const m = v.match(/^([^:：]{1,40}?)\s*[:：]\s+(.+)$/s);          // "term: meaning" (always the text before the first colon); otherwise the key's own name (acronyms)
     gloss.append(el('div', null, el('dt', null, m ? m[1] : k.slice(6).replace(/-/g, ' ')), el('dd', null, m ? m[2] : v)));
   });
   const list = (id, prefix) => {
@@ -380,6 +470,7 @@ function render() {
     let v = t(e.dataset.k);
     if (!v && e.dataset.q) v = lang === 'EN' ? e.dataset.q : '';            // qualifier word missing from the script
     if (!v && e.dataset.k.startsWith('event.')) return;                    // keep the label from bands.json
+    if (e.dataset.thOnly && lang !== 'TH') v = '';                         // e.g. the Thai classifier after device counts
     e.textContent = v;
   });
   $$('.view-band h2').forEach(h => h.style.setProperty('--len', Math.max(4, h.textContent.length)));   // title size fits its length
@@ -388,6 +479,7 @@ function render() {
   const title = blocks['cover.title'] && (blocks['cover.title'][lang] || blocks['cover.title'].EN);
   document.title = title ? title.replace(/~/g, '') : 'Spectrum Harmonization';   // no word joiners in the tab title
   safe('stats', renderStats);
+  safe('principles', renderPrinciples);
   safe('lists', renderLists);
   safe('plans', relabelPlans);
   safe('plans fit', () => fitPlanTexts());

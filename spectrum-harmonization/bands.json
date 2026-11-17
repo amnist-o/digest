@@ -253,7 +253,7 @@
    "group": "low",
    "pdf_page": 11,
    "range_lines": [
-    "703-733 MHz / 758-788 MHz",
+    "703-748 MHz / 758-803 MHz",
     "703-733 MHz / 758-788 MHz (EMEA)"
    ],
    "min_mhz": 703,
@@ -1225,7 +1225,10 @@
     "note": "two device figures, one per 3GPP band; no single band figure"
    },
    "gens": [],
-   "gens_future": []
+   "gens_future": [],
+   "index_events": [
+    "wrc-19"
+   ]
   },
   {
    "id": "40-ghz",
@@ -1385,51 +1388,46 @@
      "band": null
     }
    ],
+   "mapGroups": [
+    "g1",
+    "g2",
+    "g3"
+   ],
    "where": [
     {
      "id": "w1",
      "level": "area",
-     "status": "use",
+     "group": "g1",
      "places": [
       "north-america",
       "caribbean",
       "middle-east"
      ],
      "band": null,
-     "en": "n71 is assigned and in use in these regions."
+     "en": "North America, the Caribbean and the Middle East: in use."
     },
     {
      "id": "w2",
      "level": "area",
-     "status": "plan",
+     "group": "g2",
      "places": [
       "apac"
      ],
      "band": null,
-     "en": "n105 is being developed, particularly in APAC."
+     "en": "Asia-Pacific: a newer band plan is in development."
     },
     {
      "id": "w3",
      "level": "itu",
-     "status": "identified",
      "partial": true,
+     "group": "g3",
      "places": [
+      "itu1",
       "itu2",
       "itu3"
      ],
      "band": null,
-     "en": "Provisions for parts of these Regions came at WRC-15."
-    },
-    {
-     "id": "w4",
-     "level": "itu",
-     "status": "identified",
-     "partial": true,
-     "places": [
-      "itu1"
-     ],
-     "band": null,
-     "en": "Some countries in Region 1 had footnotes expanded at WRC-23."
+     "en": "ITU Regions 1, 2 and 3: some countries have identified it for IMT."
     }
    ]
   },
@@ -1462,56 +1460,44 @@
      "band": null
     }
    ],
+   "mapGroups": [
+    "g1",
+    "g2",
+    "g3"
+   ],
+   "worldCaption": "map.700-mhz.world",
    "where": [
     {
      "id": "w1",
-     "level": "global",
-     "status": "identified",
-     "places": [],
-     "band": null,
-     "en": "Harmonised in all three ITU Regions."
-    },
-    {
-     "id": "w2",
      "level": "area",
-     "status": "use",
+     "group": "g1",
      "places": [
       "apac",
       "latin-america"
      ],
      "band": null,
-     "en": "Widely used for 4G and 5G, with 2 x 45 MHz."
+     "en": "Asia-Pacific and Latin America: the full band, 2 x 45 MHz, for 4G and 5G coverage."
     },
     {
-     "id": "w3",
+     "id": "w2",
      "level": "itu",
-     "status": "use",
+     "group": "g2",
      "places": [
       "itu1"
      ],
      "band": null,
-     "en": "2x30 MHz FDD plan plus 20 MHz SDL; final decisions at WRC-15."
+     "en": "ITU Region 1 (EMEA): 60 MHz as FDD plus 20 MHz SDL."
     },
     {
-     "id": "w4",
+     "id": "w3",
      "level": "country",
-     "status": "plan",
+     "group": "g3",
      "places": [
       "usa",
       "can"
      ],
      "band": null,
-     "en": "A different plan: 80 MHz in total, including 10 MHz SDL."
-    },
-    {
-     "id": "w5",
-     "level": "area",
-     "status": "plan",
-     "places": [
-      "north-america"
-     ],
-     "band": null,
-     "en": "North America has its own band plan: n12, n13, n14."
+     "en": "United States and Canada: 70 MHz in three band plans plus 10 MHz SDL."
     }
    ]
   },
@@ -1532,26 +1518,19 @@
      "band": null
     }
    ],
+   "mapGroups": [
+    "g1"
+   ],
    "where": [
     {
      "id": "w1",
-     "level": "itu",
-     "status": "identified",
-     "places": [
-      "itu1"
-     ],
-     "band": null,
-     "en": "The original digital dividend band; identified for IMT at WRC-07."
-    },
-    {
-     "id": "w2",
      "level": "area",
-     "status": "use",
+     "group": "g1",
      "places": [
       "emea"
      ],
      "band": null,
-     "en": "Widely assigned; use spread rapidly for 4G launches."
+     "en": "EMEA: in use, mostly for 4G."
     }
    ]
   },
@@ -1570,19 +1549,15 @@
      "band": null
     }
    ],
+   "mapGroups": [
+    "g1"
+   ],
+   "worldCaption": "ui.legend.global",
    "where": [
     {
      "id": "w1",
-     "level": "global",
-     "status": "identified",
-     "places": [],
-     "band": null,
-     "en": "806-960 MHz was identified globally for IMT at WRC-2000."
-    },
-    {
-     "id": "w2",
      "level": "area",
-     "status": "use",
+     "group": "g1",
      "partial_places": [
       "apac"
      ],
@@ -1591,7 +1566,7 @@
       "apac"
      ],
      "band": null,
-     "en": "The first cellular band throughout the Americas and parts of APAC."
+     "en": "The Americas, and parts of Asia-Pacific: in use."
     }
    ]
   },
@@ -1616,51 +1591,21 @@
      "band": null
     }
    ],
+   "mapGroups": [
+    "g1"
+   ],
    "where": [
     {
      "id": "w1",
      "level": "itu",
-     "status": "use",
+     "group": "g1",
      "places": [
       "itu1",
-      "itu2",
+      "latin-america",
       "itu3"
      ],
      "band": null,
-     "en": "The original GSM band, deployed in Regions 1, 2 and 3."
-    },
-    {
-     "id": "w2",
-     "level": "area",
-     "status": "use",
-     "places": [
-      "latin-america"
-     ],
-     "band": null,
-     "en": "Named as the Region 2 part of the GSM deployment."
-    },
-    {
-     "id": "w3",
-     "level": "area",
-     "status": "identified",
-     "partial": true,
-     "places": [
-      "europe"
-     ],
-     "band": null,
-     "en": "First harmonised in 1987 for GSM in some European countries."
-    },
-    {
-     "id": "w4",
-     "level": "itu",
-     "status": "use",
-     "partial": true,
-     "places": [
-      "itu2",
-      "itu3"
-     ],
-     "band": null,
-     "en": "Some countries mixed 900 MHz and 850 MHz assignments."
+     "en": "In use for GSM and IMT."
     }
    ]
   },
@@ -1682,69 +1627,62 @@
      "band": null
     }
    ],
+   "mapGroups": [
+    "g1",
+    "g2",
+    "g3",
+    "g4"
+   ],
    "where": [
     {
      "id": "w1",
-     "level": "itu",
-     "status": "identified",
-     "places": [
-      "itu2",
-      "itu3"
-     ],
-     "band": null,
-     "en": "Harmonised in Regions 2 and 3."
-    },
-    {
-     "id": "w2",
-     "level": "itu",
-     "status": "identified",
-     "places": [
-      "itu1"
-     ],
-     "band": null,
-     "en": "Parts of the band are harmonised in the Radio Regulations."
-    },
-    {
-     "id": "w3",
-     "level": "area",
-     "status": "identified",
-     "places": [
-      "europe",
-      "arab-world"
-     ],
-     "band": null,
-     "en": "Europe harmonised it for SDL; Arab Spectrum Management Group for TDD."
-    },
-    {
-     "id": "w4",
      "level": "country",
-     "status": "use",
+     "group": "g1",
      "places": [
       "jpn"
      ],
      "band": null,
-     "en": "Already used in Japan with FDD."
+     "en": "FDD: Japan."
     },
     {
-     "id": "w5",
-     "level": "country",
-     "status": "plan",
+     "id": "w2",
+     "level": "area",
+     "group": "g2",
      "places": [
-      "idn",
+      "europe"
+     ],
+     "band": null,
+     "en": "SDL: Europe."
+    },
+    {
+     "id": "w3",
+     "level": "area",
+     "group": "g3",
+     "places": [
+      "arab-world",
+      "idn"
+     ],
+     "band": null,
+     "en": "TDD: Arab world and Indonesia."
+    },
+    {
+     "id": "w4",
+     "level": "country",
+     "group": "g4",
+     "places": [
       "ind",
       "bra"
      ],
      "band": null,
-     "en": "Indonesia auctioned it for TDD; India and Brazil have it on the roadmap."
+     "en": "On the roadmap: India and Brazil."
     }
    ]
   },
   {
-   "id": "1800-2100",
+   "id": "1800-mhz",
    "group": "mid",
    "bands": [
-    "1800-mhz",
-    "2-1-ghz"
+    "1800-mhz"
    ],
    "image": "mid-1",
    "events": [
@@ -1752,135 +1690,112 @@
      "event": "wrc-2000",
      "scope": "global",
      "itu": null,
-     "band": "1800-mhz"
-    },
+     "band": null
+    }
+   ],
+   "worldCaption": "ui.legend.global",
+   "where": []
+  },
+  {
+   "id": "2-1-ghz",
+   "group": "mid",
+   "bands": [
+    "2-1-ghz"
+   ],
+   "image": "mid-1",
+   "events": [
     {
      "event": "warc-92",
-     "scope": "global",
+     "scope": "global-plain",
      "itu": null,
-     "band": "2-1-ghz"
+     "band": null
     },
     {
      "event": "wrc-27",
-     "scope": "future",
+     "scope": "mss",
      "itu": null,
-     "band": "2-1-ghz"
+     "band": null
     }
+   ],
+   "worldCaption": "map.2-1-ghz.world",
+   "where": []
+  },
+  {
+   "id": "pcs",
+   "group": "mid",
+   "bands": [
+    "pcs-1900-mhz"
+   ],
+   "image": "mid-1",
+   "events": [
+    {
+     "event": "warc-92",
+     "scope": "identified",
+     "itu": null,
+     "band": null
+    },
+    {
+     "event": "wrc-2000",
+     "scope": "identified",
+     "itu": null,
+     "band": null
+    }
+   ],
+   "mapGroups": [
+    "g1"
    ],
    "where": [
     {
      "id": "w1",
-     "level": "global",
-     "status": "identified",
-     "places": [],
-     "band": "1800-mhz",
-     "en": "Used extensively throughout the world; identified for IMT at WRC-2000."
-    },
-    {
-     "id": "w2",
-     "level": "global",
-     "status": "identified",
-     "places": [],
-     "band": "2-1-ghz",
-     "en": "Identified globally at WARC-92."
-    },
-    {
-     "id": "w3",
      "level": "area",
-     "status": "use",
+     "group": "g1",
      "places": [
-      "europe",
-      "apac"
+      "americas",
+      "caribbean"
      ],
-     "band": "2-1-ghz",
-     "en": "The primary 3G band in Europe, Asia and other regions."
+     "band": null,
+     "en": "In use: mainly the Americas and the Caribbean."
     }
    ]
   },
   {
-   "id": "pcs-aws",
+   "id": "aws",
    "group": "mid",
    "bands": [
-    "pcs-1900-mhz",
     "aws-1700-2100-mhz"
    ],
    "image": "mid-1",
    "events": [
     {
      "event": "warc-92",
-     "scope": "global",
-     "itu": null,
-     "band": "pcs-1900-mhz"
-    },
-    {
-     "event": "wrc-2000",
-     "scope": "global",
-     "itu": null,
-     "band": "pcs-1900-mhz"
-    },
-    {
-     "event": "warc-92",
      "scope": "identified",
      "itu": null,
-     "band": "aws-1700-2100-mhz"
+     "band": null
     },
     {
      "event": "wrc-2000",
      "scope": "identified",
      "itu": null,
-     "band": "aws-1700-2100-mhz"
+     "band": null
     }
+   ],
+   "mapGroups": [
+    "g1"
    ],
    "where": [
     {
      "id": "w1",
-     "level": "global",
-     "status": "identified",
-     "places": [],
-     "band": null,
-     "en": "Both sit in ranges identified globally for IMT."
-    },
-    {
-     "id": "w2",
-     "level": "area",
-     "status": "use",
-     "places": [
-      "americas",
-      "caribbean"
-     ],
-     "band": "pcs-1900-mhz",
-     "en": "A core part of mobile services, mostly here."
-    },
-    {
-     "id": "w3",
      "level": "country",
-     "status": "use",
+     "group": "g1",
      "places": [
-      "usa"
-     ],
-     "band": "aws-1700-2100-mhz",
-     "en": "AWS was originally introduced in the US and parts of the Americas."
-    },
-    {
-     "id": "w4",
-     "level": "area",
-     "status": "identified",
-     "places": [
+      "usa",
       "americas"
      ],
-     "band": "aws-1700-2100-mhz",
-     "en": "AWS is harmonised primarily across the Americas, not globally."
-    },
-    {
-     "id": "w5",
-     "level": "area",
-     "status": "use",
-     "places": [
-      "americas",
-      "caribbean"
+     "partial_places": [
+      "americas"
      ],
-     "band": "aws-1700-2100-mhz",
-     "en": "AWS networks are predominately here (text says PCS band)."
+     "band": null,
+     "en": "In use: the US and parts of the Americas."
     }
    ]
   },
@@ -1899,16 +1814,8 @@
      "band": null
     }
    ],
-   "where": [
-    {
-     "id": "w1",
-     "level": "global",
-     "status": "identified",
-     "places": [],
-     "band": null,
-     "en": "First identified for IMT at WRC-07; globally harmonised."
-    }
-   ]
+   "worldCaption": "ui.legend.global",
+   "where": []
   },
   {
    "id": "2-6-ghz",
@@ -1925,16 +1832,8 @@
      "band": null
     }
    ],
-   "where": [
-    {
-     "id": "w1",
-     "level": "global",
-     "status": "identified",
-     "places": [],
-     "band": null,
-     "en": "Harmonised globally for IMT at WRC-2000."
-    }
-   ]
+   "worldCaption": "ui.legend.global",
+   "where": []
   },
   {
    "id": "3-5-ghz",
@@ -1965,40 +1864,41 @@
      "band": null
     }
    ],
+   "mapGroups": [
+    "g1",
+    "g2",
+    "g3"
+   ],
    "where": [
     {
      "id": "w1",
-     "level": "global",
-     "status": "identified",
-     "places": [],
+     "level": "itu",
+     "group": "g1",
+     "places": [
+      "itu1"
+     ],
      "band": null,
-     "en": "3.5-3.8 GHz allocated in all three regions; 3.3-3.8 used globally."
+     "en": "ITU Region 1: 3.4-3.8 GHz."
     },
     {
      "id": "w2",
      "level": "itu",
-     "status": "identified",
-     "partial_places": [
-      "itu3"
-     ],
+     "group": "g2",
      "places": [
-      "itu1",
-      "itu2",
-      "itu3"
+      "itu2"
      ],
      "band": null,
-     "en": "3.4-3.5 GHz allocated in Regions 1, 2 and part of 3."
+     "en": "ITU Region 2: 3.4-4.2 GHz."
     },
     {
      "id": "w3",
      "level": "itu",
-     "status": "identified",
+     "group": "g3",
      "places": [
-      "itu2",
       "itu3"
      ],
      "band": null,
-     "en": "An additional primary mobile allocation at 3.8-4.2 GHz."
+     "en": "ITU Region 3: 3.5-4.2 GHz (3.4-3.5 GHz in part)."
     }
    ]
   },
@@ -2018,7 +1918,7 @@
     },
     {
      "event": "wrc-19",
-     "scope": "some",
+     "scope": "more",
      "itu": null,
      "band": null
     },
@@ -2029,39 +1929,47 @@
      "band": null
     }
    ],
+   "mapGroups": [
+    "g1",
+    "g2",
+    "g3"
+   ],
    "where": [
     {
      "id": "w1",
+     "level": "area",
+     "group": "g1",
+     "places": [
+      "apac"
+     ],
+     "band": null,
+     "en": "Asia-Pacific: most use today."
+    },
+    {
+     "id": "w2",
      "level": "country",
-     "status": "use",
+     "group": "g2",
      "places": [
       "chn",
       "jpn",
       "kor"
      ],
      "band": null,
-     "en": "Strong 5G NR device support in these markets."
-    },
-    {
-     "id": "w2",
-     "level": "area",
-     "status": "use",
-     "places": [
-      "apac"
-     ],
-     "band": null,
-     "en": "Current use of the band is greatest in Asia-Pacific."
+     "en": "China, Japan and South Korea: strong device support."
     },
     {
      "id": "w3",
-     "level": "area",
-     "status": "plan",
-     "partial": true,
+     "level": "country",
+     "group": "g3",
+     "partial_places": [
+      "rcc"
+     ],
      "places": [
+      "usa",
       "rcc"
      ],
      "band": null,
-     "en": "Interest is increasing in parts of RCC."
+     "en": "United States, and parts of the RCC: growing interest."
     }
    ]
   },
@@ -2080,40 +1988,44 @@
      "band": null
     }
    ],
+   "mapGroups": [
+    "g1",
+    "g2",
+    "g3"
+   ],
    "where": [
     {
      "id": "w1",
      "level": "area",
-     "status": "identified",
+     "group": "g1",
      "places": [
       "emea"
      ],
      "band": null,
-     "en": "WRC-23 identified the band throughout EMEA."
+     "en": "EMEA: identified for IMT at WRC-23."
     },
     {
      "id": "w2",
      "level": "area",
-     "status": "identified",
      "partial": true,
+     "group": "g2",
      "places": [
       "apac",
       "americas"
      ],
      "band": null,
-     "en": "Identified in some countries in APAC and the Americas."
+     "en": "APAC and the Americas: identified in some countries."
     },
     {
      "id": "w3",
      "level": "area",
-     "status": "plan",
      "partial": true,
+     "group": "g3",
      "places": [
-      "gcc",
-      "apac"
+      "gcc"
      ],
      "band": null,
-     "en": "Some countries here have already licensed the band."
+     "en": "GCC: some countries have already licensed it."
     }
    ]
   },
@@ -2133,43 +2045,21 @@
      "band": "26-ghz"
     }
    ],
+   "mapGroups": [
+    "g1"
+   ],
+   "worldCaption": "map.26-28-ghz.world",
    "where": [
     {
      "id": "w1",
-     "level": "global",
-     "status": "identified",
-     "places": [],
-     "band": "26-ghz",
-     "en": "26 GHz identified for IMT globally at WRC-19."
-    },
-    {
-     "id": "w2",
-     "level": "global",
-     "status": "identified",
-     "places": [],
-     "band": "28-ghz",
-     "en": "n257 (26.5-29.5 GHz) is described as globally harmonised."
-    },
-    {
-     "id": "w3",
      "level": "area",
-     "status": "use",
+     "group": "g1",
      "places": [
-      "north-america"
+      "north-america",
+      "kor"
      ],
      "band": "28-ghz",
-     "en": "The original mmWave band, used here."
-    },
-    {
-     "id": "w4",
-     "level": "country",
-     "status": "use",
-     "places": [
-      "kor",
-      "usa"
-     ],
-     "band": "28-ghz",
-     "en": "Used in South Korea; first mmWave launches in the US."
+     "en": "North America and South Korea: 28 GHz in use."
     }
    ]
   },
@@ -2185,13 +2075,13 @@
    "events": [
     {
      "event": "wrc-19",
-     "scope": "global",
+     "scope": "harmonised-global",
      "itu": null,
      "band": "40-ghz"
     },
     {
      "event": "wrc-19",
-     "scope": "some",
+     "scope": "harmonised-some",
      "itu": null,
      "band": "50-ghz"
     },
@@ -2202,22 +2092,36 @@
      "band": "66-ghz"
     }
    ],
+   "mapGroups": [
+    "g1",
+    "g2",
+    "g3"
+   ],
+   "worldTint": true,
    "where": [
     {
      "id": "w1",
-     "level": "global",
-     "status": "identified",
+     "level": "area",
+     "group": "g1",
      "places": [],
      "band": "40-ghz",
-     "en": "40 GHz was harmonised globally at WRC-19."
+     "en": "40 GHz."
     },
     {
      "id": "w2",
-     "level": "global",
-     "status": "identified",
+     "level": "area",
+     "group": "g2",
      "places": [],
      "band": "66-ghz",
-     "en": "66 GHz was identified globally at WRC-19."
+     "en": "66 GHz."
+    },
+    {
+     "id": "w3",
+     "level": "area",
+     "group": "g3",
+     "places": [],
+     "band": "50-ghz",
+     "en": "50 GHz."
     }
    ]
   }
