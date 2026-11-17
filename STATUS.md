@@ -1,5 +1,121 @@
 # STATUS — NBTC digest web page
 
+## 17 November 2026 (Spectrum Harmonization: content rewritten by main ideas, per-band maps; six pages done)
+
+**Purpose, stated by A. for the first time:** convey the GSMA report to NBTC colleagues and executives who know the organisations (ITU, GSMA, WRC, 3GPP, IMT need no explanation) but have no spectrum background. Simple and accurate; readers can open the report for detail.
+
+**What we did** (all in `spectrum-harmonization/`, nothing committed)
+- The report PDF is now in `spectrum-harmonization/source/` (kept off GitHub by the existing `source/` rule).
+- Six band pages rewritten in Thai and English, each with its own map: 700 MHz, 900 MHz, 1500 MHz, 3.5 GHz, 6 GHz, 26 + 28 GHz. Checked in the preview (Thai) and fact-checked against the report by a separate reader: no errors; three small wording fixes applied.
+- Files changed: `script.md`, `bands.json`, `js/map.js`, `js/app.js`, `css/style.css`.
+
+**Decisions and why**
+- **Method (A.):** not sentence-by-sentence paraphrase. For each section, pull out the few main ideas, then explain them in short statements. Thai is written from the meaning, never word by word. A.'s own 700 MHz Thai overview is the model. No headings phrased as questions. Do not assume beyond the report.
+- **Workflow that worked:** the writer proposes main ideas + what the map should show for each band; A. corrects the outline; only then is the text written.
+- **Map (A.):** each band's map shows what is distinctive about that band, not one status ladder on every page. A page in `bands.json` gets `mapGroups` and each `where` entry a `group`; the coloured list lines beside the map are the legend; heading from `map.<page>.title`; optional `worldCaption`. Pages without `mapGroups` still use the old status map.
+- **Map colours** come only from the page's own palette (amber, rose, cream, darker coral). A. rejected teal/violet.
+- **Words:** "Identified for IMT" (official term); Thai verb ระบุ. ITU/WRC level only agrees or identifies; only national regulators จัดสรร and ออกใบอนุญาต. Kept in English inside Thai: FDD, TDD, SDL, roadmap, refarm, Ecosystem, ITU Region, coverage, capacity (ความจุ is vague, can be read as throughput), band plan. English spelling "harmonise", Thai "Harmonize".
+- **Detail kept or cut:** band-plan sizes stay (comparison with Thailand); footnote history becomes "countries gradually declared the band for IMT"; 3GPP band codes leave the text.
+- **700 MHz specifics:** NB-IoT is attributed to Region 1 on A.'s reading (the report's sentence is ambiguous), with no size; "70 MHz" (80 minus 10 SDL) and the 10 MHz gap are worked out, not printed in the report.
+- **900 MHz:** one map category, "in use for GSM and IMT"; North America is uncoloured because the report names Region 2 as Latin America only.
+- **Working arrangement (A.):** the main assistant only coordinates; a strong model writes, a cheaper one builds and checks; no helpers for trivial edits.
+
+**Later the same day (A.'s review of the six pages)**
+- **Thai sentence structure for "identified" (A.):** who first, then the act: "ทั่วโลกระบุให้ย่าน 26 GHz ใช้งาน IMT", "Region 1: ระบุให้ย่าน 3.4-3.8 GHz ใช้งานสำหรับ IMT". Applied to the six pages, the map captions and the timeline labels; to be used on every page from now on. The 3.5 GHz English still says "agreed for mobile" (the report's word is "allocated").
+- **3GPP band codes removed from all 15 band pages** (chips, diagram row labels, the 28 GHz device line); they remain only in the table on the last page. Multi-row diagrams now name rows by FDD/TDD/SDL or by frequency range. Codes still sit in the script text of pages not yet rewritten (600, 850, PCS/AWS, 2.6, 4.5).
+- **900 MHz map:** US and Canada stay uncoloured; report p14 names Region 2 as Latin America only.
+
+**Later again (the remaining nine band pages)**
+- All 15 band pages are now in the new style with per-band maps; the old status legend no longer appears anywhere (its code and the `ui.legend.use/plan/identified/partial` blocks are left in place, unused). A separate reader fact-checked the nine pages: no errors; two small softenings applied.
+- **A.'s corrections:** 600 MHz line "กำลังพัฒนาแผนคลื่นใหม่: เอเชียแปซิฟิก" (A. then ruled: แผนคลื่น for "band plan" in the Thai on every page — done); 2.6 GHz map is caption only; 4.5 GHz "ให้ความสนใจ: สหรัฐฯ และบางส่วนของ RCC"; 600 MHz "regions including…" stays as the report has it.
+- **Chosen without A.'s ruling (cautious defaults, to confirm):** 2.3 GHz and 1800 + 2.1 GHz are caption-only maps like 2.6 GHz; 40/50/66 GHz shows three plain lines (one per band) on a faintly tinted map, no table; "digital dividend" on 800 MHz is not explained (stick to the source); 900 MHz has no world caption.
+- **4.5 GHz old map doubts settled from p24:** Asia-Pacific = most use; China/Japan/Korea = device support; US and parts of RCC = interest.
+- **Incident:** a helper's edit briefly cut the end of `bands.json`; it was rebuilt from the committed copy and I verified everything outside the map fields is identical to the committed version.
+- **Still to look at:** timeline labels crowd each other on 1800 + 2.1, PCS + AWS and 40/50/66; the 40/50/66 timeline label says "identified for IMT" for 40 GHz where the report says "harmonised globally"; the 600 MHz dashed layer covers the whole world; the opening sections (cover, why harmonise, three kinds of band) and the closing pages have not been rewritten in the new style.
+
+**Later again (opening and closing sections)**
+- Rewritten by main ideas, after A. approved the outlines and five rulings: the glossary carries our own plain explanations of key terms (credits say so); credits state the digest was prepared at NBTC, not by GSMA; the p6 connectivity figures (59% connected, 38% usage gap, 3% coverage gap) added to "why"; the 80% upper-6 GHz figure kept only in "what comes next"; EMEA, APAC, GCC added to the glossary.
+- Headings no longer phrased as questions ("ประโยชน์ของการ Harmonize คลื่นความถี่"). "Why" now says each country still assigns its own spectrum. Licensing principles (p8) written out in full, with titles in bold. Notes say uncoloured map areas do not mean unused, and that Thailand is in ITU Region 3. New note on worked-out figures.
+- Fixed: low-band fact now says percentage points (จุดร้อยละ); "unique mobile subscribers"; dropped acronyms no longer used (5G NR, LTE, UMTS, WCDMA, MNO).
+- The writing rules at the top of `script.md` now carry A.'s term rulings, so later edits don't bring back ประสาน, ความจุ, ระบบนิเวศ and the like.
+- Page code: six figure slots in two groups of three, principle lede and note, longer glossary terms. A separate reader fact-checked: no errors. Checked in the preview: why and next views fit; no errors.
+- **Map layout (A.):** whole-globe map kept (rim and grid lines), but the dark card behind it is removed so the globe sits straight on the picture. The map may now take the full height left after the list and timeline (it used to be capped), so at 1366×768 it is about 640 px wide instead of about 536. Band page split is 48/52 (text/map; was 46/54), chosen so the text box on the left fits without scrolling on most pages: at 1366×768 only 26+28 GHz still scrolls, slightly (16 px); at 1280×720, 5 of 15 pages still scroll (700, 1500, 1800+2.1, PCS+AWS, 26+28). The panel under the map (list + timeline) is only as tall as its content and never scrolls. Uncoloured land on the map: A. first asked for less opacity, then found 45% too faint; now 75%.
+- **Band-plan numbers on one line (A.):** the frequency numbers under each band-plan diagram no longer drop to a second row; close numbers are nudged sideways to clear each other (ticks stay exact) and shrink only if a row cannot fit. Checked on all 17 band pages at 1366×768: none touch, none shrunk.
+- **Page 21 Thai headings (A.):** the four card titles and the principles heading were 13 px in Thai (a general small-label rule overrode them); now about 25 px and 18 px.
+- **Timeline wording (A.):** on pages with several bands, Thai labels name the band inside the sentence: "ทั่วโลกระบุให้ย่าน 26 GHz ใช้งาน IMT". On 40/50/66 GHz the labels now match the report: "ทั่วโลก Harmonize ย่าน 40 GHz", "บางประเทศ Harmonize ย่าน 50 GHz", "ทั่วโลกระบุให้ย่าน 66 GHz ใช้งาน IMT" (new scope blocks `scope.harmonised-global`, `scope.harmonised-some`).
+- **900 MHz map, asked again by A.:** US and Canada stay uncoloured; report p14 names Region 2 as Latin America only, and North America uses 850 MHz and PCS rather than 900 MHz.
+- **Final quality check (Opus 5.5, read-only):** no wrong numbers anywhere; Thai natural overall; palette consistent. A. approved applying all findings (A, B and C), with two rulings of A.'s own: "digital dividend" in Thai is "คลื่นความถี่เหลือใช้จากการเปลี่ยนผ่านสู่ทีวีระบบดิจิทัล" (800 MHz text + new glossary entry), and Thai device counts take the classifier ชิ้น (text, band cards, index table; new block `ui.deviceUnit`, shown in Thai only). All applied and checked in the preview. Also: list entries with no map areas get a neutral grey bullet; the unused `status` field was removed from grouped map entries; index table follows page order; 28 GHz row shows "over 100 / over 170" and WRC-19 (via `index_events`, table only). 3.5 GHz EN "agreed for mobile" vs TH ระบุ…สำหรับ IMT still open; its Thai "ตกลงกันผ่าน WRC" became "มีการวางแผนย่านนี้ผ่าน WRC" (report p23 "planning"). The findings were: 40/50/66 GHz list swatches have no matching map colours; 4.5 GHz WRC-19 timeline says "some countries" where text and report say many; 700 MHz caption and A.'s Thai overview say "identified" where the report says "harmonised"; 26+28 GHz Thai still scrolls slightly at 1366×768; "100 ส่วน" misreadable on 26/28 GHz; 700 MHz EN "download only"; 6 GHz EN "were expected" (should be "are"); 700 MHz card repeats one range; cover "next space" label sits on the 7–24 GHz break but names 4.5 GHz; plus about 20 small Thai/English touch-ups and some leftovers (unused legend blocks, old statuses in bands.json, stray colour #ff8a5c on the why view, comment "15 band pages").
+- **18 November: last fixes and second final check.** AWS (and 2.1 GHz) band charts: a very wide empty gap is drawn shortened (20% of the width) so blocks and numbers have room; gap label wraps to two lines. 3.5 GHz Thai: "มีการวางแผนย่านนี้ใน WRC หลายครั้ง", "ผู้ใช้คลื่นเดิม / ผู้ใช้คลื่นข้างเคียง" (A.'s wording). A. kept the 3.5 GHz English as is and the cover label as is. Second check (Opus 5.5): no wrong numbers; A. had the must-fix and should-fix items applied (small items left out), with A.'s own wording: 3.5 GHz "Ecosystem มีอุปกรณ์กว่า 3,500 ชิ้น จากราว 1,300 ชิ้นในปี 2022" (and the card's "just over" now ราว); 2.1 GHz WRC-27 "อาจมีการหารือการใช้งานดาวเทียม" (`scope.mss`); 700 MHz dropped "ซึ่งสองช่วงห่างกัน 10 MHz" (and "10 MHz apart" in EN); 28 GHz ecosystem states the figures directly. Shortened chart gaps now always carry "ช่องว่าง (ไม่ตามสัดส่วน)" or, where no words fit, "≈" (`ui.gapShort`). 11.3 ล้านล้าน no longer breaks between the two ล้าน (word joiners). next.f3 "ย่านกลางรวม 2-2.5 GHz". Checked in the preview at 1080p and 1366×768, no console errors; 26+28 GHz Thai still scrolls 14 px at 1366×768 only. The findings were: $11.3 trillion Thai figure wraps so the first line reads "11.3 ล้าน" at 1080p; shortened gap unmarked at 1366 (needs a break mark / "not to scale" label); 3.5 GHz device figures lack unit/ชิ้น; "มากกว่าเล็กน้อย 1,300" word order; 2.1 GHz "WRC-27: to be discussed" implies 2.1 GHz itself is on the agenda; 700 MHz and 26+28 GHz Thai boxes still scroll at 1366×768; next.f3 "2-2.5 GHz" reads as a position, not an amount; plus small items (600 MHz WRC-15 scope, 40/50/66 list order and tint, a few Thai touch-ups and line breaks).
+- **Right-side position (A.):** the map and the card under it start lower (space above grows with screen height: about 84 px at 1080p, 30 px at 768-high screens), so they line up with the text on the left. At 1080p the map now starts at 189 px from the top (was about 105). Checked: the card under the map never scrolls at 1080p or 1366×768.
+- **Fact-check of the four split pages:** no factual errors. Applied: 2.1 GHz map caption and WARC-92 timeline label now say "ทั่วโลกระบุย่านนี้ไว้" / "identified worldwide" without IMT, as the report has it (new block `scope.global-plain`); PCS timeline uses "ระบุให้ย่านนี้ใช้งาน IMT" like AWS (the report never calls PCS worldwide); 2.1 GHz Thai "เรื่องเร่งด่วน" softened to "สิ่งที่ต้องให้ความสำคัญ" (report: "a priority"). 1800 MHz keeps the worldwide-for-IMT caption (supported through the globally identified range it sits in). A. confirmed the layout looks fine at 1080p.
+- **Split shared pages (A.):** 1800 + 2.1 GHz and PCS + AWS now have one page each (page ids `1800-mhz`, `2-1-ghz`, `pcs`, `aws`); 17 band pages, 22 views in all. 1800 and 2.1 GHz: world caption only. PCS: in use mainly in the Americas and Caribbean. AWS: US solid, parts of the Americas dashed (no longer shares PCS's Caribbean colouring). A few extra report points added now that each band has room (p18–20). Checked at 1366×768: the four pages load, show the right map and list, and none of their boxes scroll. A first attempt that cropped the globe to the land was rejected by A. (`js/map.js`, `css/style.css`).
+- Open: whether `credits.digest` should name the author or bureau (episode 1's cover has a byline; this page has none).
+
+**Lesson:** ask what the output is for and who reads it before building. The first build had only "the report is the source" and reproduced the report's wording.
+
+**18 November, end of session:** committed (`f35715a`) and pushed to branch `spectrum-harmonization`; confirmed GitHub has `f35715a`. Not published: the public site builds from `main`, and https://amnist-o.github.io/digest/spectrum-harmonization/ returns "not found" (checked). QR code made for that address: `qr/spectrum-harmonization.png` and `.svg` (kept off GitHub like episode 1's). It works only once the page is published; not yet test-scanned (no scanner on this laptop). The two infographic files in `spectrum-harmonization/` were left uncommitted.
+
+**18 November, published (A.):** branch merged into `main` (the only conflict was this log; both sets of entries kept, newest first) and the home page `index.html` now lists the Spectrum Harmonization page above episode 1.
+
+**State now:** Spectrum Harmonization is published at https://amnist-o.github.io/digest/spectrum-harmonization/ and linked from the home page.
+**Next action:** scan `qr/spectrum-harmonization.png` with a phone; share the link.
+**Waiting on / open questions:** 26+28 GHz Thai text box scrolls 14 px at 1366×768 (fine at 1080p); the small (C) items from the second final check were left out on purpose; whether to delete the `spectrum-harmonization` branch now that it is merged.
+**Waiting on / open questions:** 3.5 GHz EN/TH wording; whether text boxes fit one screen on A.'s display (they scroll in a small window); 6 GHz map colours only the GCC as "already licensed" while the text says GCC and APAC; old map-status doubts on pages not yet redone (4.5 GHz); `infographic_script.md` and `infographic_th.pdf` sit untracked in `spectrum-harmonization/`; `ui.approx` and the old `ui.legend.*` blocks may become unused.
+
+## 16 November 2026 (Spectrum Harmonization: A.'s first review round)
+
+**What we did** (all in `spectrum-harmonization/`, nothing committed or published)
+- **Cover:** new, brighter picture (city bay at blue hour) and a much bigger spectrum wave; the title is smaller so the wave is the hero.
+- **Low bands card:** new, brighter picture (river valley at dusk). Old pictures are not kept in the project; prompts and seeds are in `images/PROMPTS.md`.
+- **Map on band pages:** stays in one place at one size on every page; sits on its own dark panel so it no longer blends into the picture; "Identified globally" now always sits at the bottom of the map.
+- **Map meaning changed** (A.'s idea): colour strength = how far along the band is. Solid = in use, striped = assigned or planned, light tint = identified or harmonised, dashed outline = only some unnamed countries. Same legend on every page.
+
+**Decisions and why**
+- Each place got one status in `bands.json` (`status` on every `where` entry), read from the report's own wording. Judgement calls for A. to check: 700 MHz in USA/Canada is "planned" (report gives a band plan, does not say "used"); 1500 MHz in Europe and the Arab world is "harmonised" (regional agreement); 4.5 GHz in China/Japan/Korea is "in use" (report: device support there and utilisation greatest in Asia-Pacific); 6 GHz in GCC/APAC is "planned" (licensed, not launched).
+- On small laptop screens the map is a little smaller so the list and timeline under it always fit without scrolling.
+- `script.md`: the three old legend entries (ITU Region / wider area / country) were replaced by `ui.legend.use`, `.plan`, `.identified`, `.note`. A.'s other edits were not touched.
+
+**Lesson:** the local preview stops when the app goes idle; restart it before telling A. to open the page. Screenshots from the hidden browser pane can show a blank or previous view, so check the page's state directly.
+
+**State now:** review round 1 applied and checked in the preview (map position identical on all 15 pages, no errors), Thai and English.
+**Next action (A. continues on another machine, 17 Nov):** A.'s own to-do list:
+1. Edit the maps and their legends.
+2. Fix the Thai translation in `script.md`.
+3. Fix the font size on the cover page and the second page in the Thai version.
+
+**Where the work is:** on GitHub in the branch `spectrum-harmonization` (not on `main`, so the unfinished page is not on the public site). On the other machine: get the latest, switch to that branch, start the local preview. The `references/` videos and `source/` stay on this laptop only.
+**Waiting on / open questions:** A.'s check of the status judgement calls above; Thai wording of the new legend entries; still nothing committed, and `references/` should be kept off GitHub first.
+
+## 15 November 2026 (new topic page: Spectrum Harmonization, build in progress)
+
+A separate digest page (not episode 2) based on the GSMA *Mobile Spectrum Report, 2026 Edition*. Folder: `spectrum-harmonization/`. Nothing is committed or published.
+
+**What we did**
+- Read the whole report. It has 20 bands, four text sections per band, and **no maps or country lists**. Geography is only in sentences.
+- Extracted the data and had a second reader check it against the page pictures: no corrections needed. Result: `bands.json` (also lists 18 oddities inside the report itself).
+- Wrote `script.md` (313 text blocks, Thai and English; the Thai is a draft for A. to rewrite).
+- Built the map data and map drawing (`lib/world.json`, `lib/places.json`, `js/map.js`), tested on its own.
+- Generated 8 of 12 illustrations with ComfyUI (`images/`; prompts and seeds in `images/PROMPTS.md`).
+- Wrote `DESIGN.md` with the reasoning.
+
+**Decisions and why**
+- One scroll gesture = one step, same as arrow keys (A.'s request); every view fits one screen so the wheel has one job.
+- 15 band pages instead of 20: thin bands share a page (1800 + 2.1, PCS + AWS, 26 + 28, 40 + 50 + 66).
+- Map shows three honest levels: ITU Regions (looked up from ITU's definition, A. allowed this), loose areas like EMEA (marked approximate), and countries the report names. A conference timeline sits under the map.
+- Generated still images, no video. Phones get a plain scrolling version.
+- A folder, not one file, because the page reads `script.md` when it opens (same as episode 1).
+
+**Later the same day (built and tested)**
+- The page is complete: cover, why, three kinds of band, 15 band pages, what comes next, and a table of all 20 bands with glossary, notes and credits. All 12 illustrations are in `images/`.
+- One polish round after Claude reviewed it in the browser: "parts of a region" is now a dashed outline instead of a filled area, images show clearly behind glass text panels, timeline labels no longer overlap, Thai text sizes raised.
+- A separate fact-check of every English sentence against the report: all numbers matched; 4 wording errors and about 10 small overstatements were corrected in `script.md` (English and Thai).
+- Tested in the built-in browser: every view in Thai and English at laptop sizes, scroll and arrow keys (one step each), direct links, the phone layout once. No errors. Not tested: a real touch screen, and the reduced-motion setting (code read only).
+
+**State now:** working locally at http://localhost:8765/spectrum-harmonization/ (English: add `?lang=en`). About 2.5 MB, 43 files. Nothing committed or published.
+**Next action:** A. reviews the page and the image look, and proofreads the Thai in `script.md`. Then decide on publishing and on a link from the home page.
+**Waiting on / open questions:** add `references/` to `.gitignore` before any commit (36 MB of someone else's video, public repository); the status-badge line for `settings.json` must be pasted by A. (the app blocked Claude from editing it); ITU region boundaries were taken from mirrors of the ITU text, not the official document.
+**Helper tools:** PyMuPDF and ffmpeg were installed only in a temporary folder, which may be cleared on reboot.
+
 ## 30 October 2026, later (smoother map moves between sections)
 
 - A. found the map move after section 2 felt like a snap. **Cause:** the map slid its view box straight from Bangkok/EEC (zoomed in) to the southern landings (~6° south) in 0.9 s, so it raced across more than a screen while still zoomed in.
