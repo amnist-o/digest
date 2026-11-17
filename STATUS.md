@@ -53,8 +53,10 @@
 
 **Lesson:** ask what the output is for and who reads it before building. The first build had only "the report is the source" and reproduced the report's wording.
 
-**State now:** the whole page (all 15 band pages, opening and closing sections) is rewritten in the new style and fact-checked, working locally on branch `spectrum-harmonization`. Nothing committed.
-**Next action:** A. reviews the whole page; then decide on committing to the branch, the tidy-up of unused blocks and code, and publishing.
+**18 November, end of session:** committed (`f35715a`) and pushed to branch `spectrum-harmonization`; confirmed GitHub has `f35715a`. Not published: the public site builds from `main`, and https://amnist-o.github.io/digest/spectrum-harmonization/ returns "not found" (checked). QR code made for that address: `qr/spectrum-harmonization.png` and `.svg` (kept off GitHub like episode 1's). It works only once the page is published; not yet test-scanned (no scanner on this laptop). The two infographic files in `spectrum-harmonization/` were left uncommitted.
+
+**State now:** the whole page (17 band pages, opening and closing sections) is rewritten, fact-checked twice, committed and pushed to branch `spectrum-harmonization`, not published.
+**Next action:** decide whether to publish (merge the branch into `main`); then prove it live, scan the QR with a phone, and consider a link from the home page.
 **Waiting on / open questions:** 3.5 GHz EN/TH wording; whether text boxes fit one screen on A.'s display (they scroll in a small window); 6 GHz map colours only the GCC as "already licensed" while the text says GCC and APAC; old map-status doubts on pages not yet redone (4.5 GHz); `infographic_script.md` and `infographic_th.pdf` sit untracked in `spectrum-harmonization/`; `ui.approx` and the old `ui.legend.*` blocks may become unused.
 
 ## 16 November 2026 (Spectrum Harmonization: A.'s first review round)
