@@ -426,7 +426,7 @@ function buildIndex() {
     };
     rows.append(el('tr', { 'data-group': b.group },
       el('th', { scope: 'row' }, page ? el('a', { href: '#' + page.id }, b.name) : b.name),
-      el('td', { class: 'mono' }, b.range_lines.join(' · ')),
+      el('td', { class: 'mono' }, ...b.range_lines.flatMap((r, i) => [i ? el('span', { class: 'rl-sep' }, ' · ') : '', el('span', { class: 'rl' }, r)])),   // phones: one range per line, never broken mid-range
       el('td', null, el('span', { 'data-k': `kinds.${b.group}.name` })),
       el('td', { class: 'mono' }, b.gpp.join(', ')),
       fig(b.networks, 'ui.noNetworks'), fig(b.devices, 'ui.noFigure', true),
@@ -435,6 +435,9 @@ function buildIndex() {
         return el('span', { class: e && e.future ? 'fut' : '' }, (i ? ', ' : ''), el('span', { 'data-k': 'event.' + id }, e ? e.label : id));
       }))));
   });
+  // Phones show each row as a block: every cell carries its column name (hidden on wider screens; translated by render())
+  const cols = $$('.band-table thead th').map(th => th.dataset.k);
+  $$('tr', rows).forEach(tr => [...tr.children].forEach((c, i) => { if (i && cols[i]) c.prepend(el('span', { class: 'cell-k', 'aria-hidden': 'true', 'data-k': cols[i] })); }));
 }
 
 // Licensing principles: "Short title: statement" - the title before the first colon is shown bold on its own line

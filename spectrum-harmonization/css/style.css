@@ -310,6 +310,23 @@ html:lang(th) .band-table thead th { font-family: var(--font-body); text-transfo
 .gloss dt { font-family: var(--font-mono); font-size: .78rem; color: var(--text); overflow-wrap: anywhere; }
 html:lang(th) .gloss dt { font-family: var(--font-body); }
 @media (max-width: 520px) { .gloss div { grid-template-columns: 1fr; gap: 2px; } }
+.band-table .cell-k { display: none; }
+/* Phones: one block per band instead of a 7-column table in a sideways-scrolling box. That box was ~3,000 px tall
+   (ranges wrapped one word per line), and iPhone Safari had to hold it, and the glossary under it, as separate graphics layers. */
+@media (max-width: 760px) {
+  .table-wrap { overflow: visible; border: 0; border-radius: 0; border-top: 1px solid var(--hair); }
+  .band-table, .band-table tbody, .band-table tr, .band-table th, .band-table td { display: block; }
+  .band-table { min-width: 0; font-size: .9rem; }
+  .band-table thead { display: none; }
+  .band-table tbody tr { border-left: 2px solid var(--g); border-bottom: 1px solid var(--hair); padding: .75rem .9rem .8rem; }
+  .band-table tbody th { border: 0; padding: 0 0 .35rem; font-size: 1.05rem; white-space: normal; }
+  .band-table td { display: flow-root; border: 0; padding: .12rem 0 .12rem 7.2rem; text-align: left; }   /* flow-root: a two-line label pushes the next line down */
+  .band-table td.n { text-align: left; white-space: normal; }
+  .band-table .cell-k { display: block; float: left; width: 6.6rem; margin-left: -7.2rem; color: var(--muted); font-family: var(--font-body); font-size: .74rem; line-height: 1.5; letter-spacing: 0; text-transform: none; font-style: normal; }
+  .band-table .mono { font-size: .8rem; }
+  .band-table .rl { display: block; }
+  .band-table .rl-sep { display: none; }
+}
 .gloss dd { color: var(--muted); }
 .notes li, .credits li { font-size: .86rem; color: var(--muted); padding: .4rem 0; border-top: 1px solid var(--hair); }
 .notes a, .credits a { color: var(--text); }
@@ -509,6 +526,11 @@ html.deck .lang-switch { top: 18px; right: clamp(14px, 2vw, 28px); }
    grain layer, in its graphics memory. On the scrolling page: no grain, no blur; panels get a more solid
    background instead, so text stays readable over the pictures. */
 html:not(.deck) .grain { display: none; }
+/* The vignette was the bigger culprit: a fixed full-screen layer UNDER the views (z-index 1 < 2), so Safari gave every
+   view it overlaps its own graphics buffer, down the whole ~39,000 px page, until memory ran out near the end. */
+html:not(.deck) .vignette { display: none; }
+html:not(.deck) .band-table thead th { position: static; }   /* sticky did nothing here (the table box doesn't scroll up/down) but cost a layer per cell */
+html:not(.deck) .spectrum { overflow-x: clip; }              /* the end labels stuck out 24 px and made the whole phone page side-scroll */
 html:not(.deck) * { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
 html:not(.deck) .bcard { background: rgba(15, 21, 28, .86); }
 html:not(.deck) .sm-info { background: rgba(9, 13, 18, .9); }
