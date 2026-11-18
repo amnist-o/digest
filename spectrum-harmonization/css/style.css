@@ -503,6 +503,17 @@ html.deck .lang-switch { top: 18px; right: clamp(14px, 2vw, 28px); }
 :root:root:lang(th) .view-next .facts h3 { font-size: clamp(1.25rem, min(1.8vw, 3.4vh), 2rem); line-height: 1.35; }
 :root:root:lang(th) .view-next .principles h3 { font-size: clamp(1rem, min(1.35vw, 2.6vh), 1.4rem); font-weight: 500; color: var(--text); }
 
+/* Phones and other small screens (the long scrolling page, not the one-screen deck).
+   iPhone Safari stopped drawing everything below the last band pages (blank space you could scroll through)
+   because this very long page asked it to keep too many blurred see-through panels, plus a full-screen
+   grain layer, in its graphics memory. On the scrolling page: no grain, no blur; panels get a more solid
+   background instead, so text stays readable over the pictures. */
+html:not(.deck) .grain { display: none; }
+html:not(.deck) * { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+html:not(.deck) .bcard { background: rgba(15, 21, 28, .86); }
+html:not(.deck) .sm-info { background: rgba(9, 13, 18, .9); }
+html:not(.deck) .lang-switch { background: rgba(7, 11, 16, .92); }
+
 /* No JavaScript, or the data could not load: one readable message instead of empty sections */
 .nojs { max-width: 40rem; font-size: 1.15rem; line-height: 1.6; padding: 1rem 1.2rem; border: 1px solid var(--hair2); border-radius: 8px; background: var(--raised); }
 .nojs + .nojs { margin-top: .8rem; }
