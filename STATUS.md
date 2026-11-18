@@ -63,9 +63,11 @@
 
 **After the second fix (A., 18 November):** still blank on A.'s iPhone Safari. A. suspects a phone or Safari setting and parked the phone issue. Desktop re-checked on the live site at 1920×1080 after both phone fixes: all 22 views load with text, no text box or map panel scrolls, the last-page table is the normal 7-column table (phone-only labels hidden), vignette and grain still on, no console errors.
 
+**Branches and tag (A., 18 November):** both merged branches (`spectrum-harmonization`, `claude/mobile-blank-pages-469f05`) deleted after checking they were fully inside `main`; GitHub now has only `main`. Tag `spectrum-v1` marks the first published version (commit `08522fb`). **Working rule from now on:** `main` = the live site; each piece of work gets its own branch; merge, then delete the branch; tag each published version (`spectrum-v2`, `ep02-v1`, …).
+
 **State now:** Spectrum Harmonization is published at https://amnist-o.github.io/digest/spectrum-harmonization/ and linked from the home page.
 **Next action:** share the link (desktop). If the iPhone problem matters later: try another iPhone, or Safari with Settings → Safari → Advanced checked, before changing the page again.
-**Waiting on / open questions:** 26+28 GHz Thai text box scrolls 14 px at 1366×768 (fine at 1080p); the small (C) items from the second final check were left out on purpose; whether to delete the merged branches `spectrum-harmonization` and `claude/mobile-blank-pages-469f05` (the latter made by the phone session).
+**Waiting on / open questions:** 26+28 GHz Thai text box scrolls 14 px at 1366×768 (fine at 1080p); the small (C) items from the second final check were left out on purpose; none on branches.
 **Waiting on / open questions:** 3.5 GHz EN/TH wording; whether text boxes fit one screen on A.'s display (they scroll in a small window); 6 GHz map colours only the GCC as "already licensed" while the text says GCC and APAC; old map-status doubts on pages not yet redone (4.5 GHz); `infographic_script.md` and `infographic_th.pdf` sit untracked in `spectrum-harmonization/`; `ui.approx` and the old `ui.legend.*` blocks may become unused.
 
 ## 16 November 2026 (Spectrum Harmonization: A.'s first review round)
