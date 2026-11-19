@@ -391,7 +391,7 @@ TH: ย่านกลางให้ capacity ทั่วทั้งเมื
 
 ## kinds.mid.fact
 EN: If mid-band spectrum stays at today's levels, cities holding over 50% of the world's urban population will be short of capacity by 2030.
-TH: หากคลื่นย่านกลางยังเท่าปัจจุบัน เมืองที่รวมประชากรเมืองเกิน 50% ของโลกจะมี capacity ไม่พอภายในปี 2030
+TH: หากคลื่นย่านกลางยังเท่าปัจจุบัน กลุ่มเมืองที่มีประชากรรวมกันเกิน 50% ของประชากรเขตเมืองทั่วโลกจะมี capacity ไม่พอภายในปี 2030
 
 ## kinds.high.name
 EN: High bands
